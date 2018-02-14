@@ -6,10 +6,10 @@ var jsFiles = ['*.js'];                         // list of files to watch for ch
 
 // A gulp task to auto-refresh server if there is any change detected
 // In Terminal, do "gulp serve" instead of "npm start" to 
-// let Gulp handle refreshing the server after every change
-// It requires Gulp installed Globally
+// let Gulp handle refreshing the server after every change.
+// It requires Gulp installed Globally.
 // do "sudo npm install -g gulp" to install it globally (with '-g' flag), 
-// meaning now various 'gulp' command can be used in Terminal.
+// meaning now various 'gulp' commands can be used in the Terminal.
 gulp.task('serve', () => {
     var options = {
         script: 'app.js',
