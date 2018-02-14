@@ -18,4 +18,4 @@ In order to run the application:
 
 5. Once the serve is running, access it `http://localhost:5000`.
 
-Basic routings are setup, I've added a registration form, and signing form and added a sample (empty) stylesheet in `layout.pug`. Comments have been added to describe the code. Add some styles to the template, change the routes to explore. :) :)
+Basic routings are setup, I've added a registration form, and sign in form and added a sample (empty) stylesheet in `layout.pug`. Not connected to Google datastore yet, once our professor opens it for us, we can connect to database and create user authentication. Comments have been added to describe the code. Add some styles to the template, change the routes to explore how they all fit together. :) :). 
