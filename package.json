@@ -1,0 +1,22 @@
+{
+  "name": "csc-project-clean-green",
+  "version": "1.0.0",
+  "description": "Project Clean & Green for CSC436/446",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nazislam/CSC-Project-Clean-Green.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nazislam/CSC-Project-Clean-Green/issues"
+  },
+  "homepage": "https://github.com/nazislam/CSC-Project-Clean-Green#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
