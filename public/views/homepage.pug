@@ -1,0 +1,23 @@
+extends layout.pug
+
+block header
+    h3 Register below
+
+block content
+    form
+        label(for="name") Name:
+        br
+        input(type="text" id="name")
+        br
+        label(for="emailAddress") Email Address:
+        br
+        input(type="text" id="emailAddress")
+        br
+        label(for="password") Password:
+        br
+        input(type="password" id="password")
+        br
+        button(type="submit") Register
+
+    p Already have an account? 
+        a(href="/signIn") Sign in 
