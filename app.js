@@ -20,6 +20,6 @@ router.get('/signin', (req, res) => {           // Get method on [ath '/signin']
 
 
 /***** Listening to port 5000  **/
-app.listen(PORT, (err) => {                             // Function that allows app to listen to specified 
-    console.log('Running server on port: ' + PORT);     // port, with callback func to handle error
+app.listen(PORT, (err) => {                             // Listening to the specified port 
+    console.log('Running server on port: ' + PORT);     
 })
