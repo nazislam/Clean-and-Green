@@ -1,0 +1,33 @@
+html, body {
+  height:100%
+  width: 100%;
+  background-image: url("img/greenbg.jpeg");
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white !important;
+}
+.register-box{
+  position: absolute;
+  left: 0;
+  top: 40%;
+}
+
+.sign-in-btn{
+  margin: 0;
+  text-align: center;
+}
+#signin-option{
+  margin: 0;
+  padding-top: 5px;
+  text-align: center;
+}
+
+#signin-header{
+  text-align: center;
+}
+#register-header{
+  text-align: center;
+}

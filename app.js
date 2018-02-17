@@ -10,6 +10,7 @@ app.set('view engine', 'pug');                  // Sets Pug as template engine f
 
 const PORT = 5000;                              // App will listen to this port
 
+
 router.get('/', (req, res) => {                 // GET method on path '/'
     res.render('homepage');                     // Rendering homepage.pug as temaplate for path '/'
 })
@@ -20,6 +21,6 @@ router.get('/signin', (req, res) => {           // Get method on [ath '/signin']
 
 
 /***** Listening to port 5000  **/
-app.listen(PORT, (err) => {                             // Listening to the specified port 
-    console.log('Running server on port: ' + PORT);     
+app.listen(PORT, (err) => {                             // Listening to the specified port
+    console.log('Running server on port: ' + PORT);
 })

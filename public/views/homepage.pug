@@ -1,23 +1,24 @@
 extends layout.pug
 
 block header
-    h3 Register below
+    h3#register-header Register below
 
 block content
-    form
-        label(for="name") Name:
-        br
-        input(type="text" id="name")
-        br
-        label(for="emailAddress") Email Address:
-        br
-        input(type="text" id="emailAddress")
-        br
-        label(for="password") Password:
-        br
-        input(type="password" id="password")
-        br
-        button(type="submit") Register
+    .register-box.container-fluid.col-4
+      .form-group
+        label(for="usr") First Name
+        input#usrf.form-control(type='text')
+      .form-group
+        label(for="usr") Last Name
+        input#usrl.form-control(type='text')
+      .form-group
+        label(for="email") E-mail
+        input#exampleInputEmail1.form-control(type='email')
+      .form-group
+        label(for="exampleInputPassword1") Password
+        input#exampleInputPassword1.form-control(type='password')
+      .sign-in-btn
+        button.btn.btn-success(type='submit') Submit
 
-    p Already have an account? 
-        a(href="/signIn") Sign in 
+    p#signin-option Already have an account?
+        a(href="/signIn") Sign in

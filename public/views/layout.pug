@@ -1,21 +1,22 @@
+doctype html
 // Pug temaplating engine
 // More information: https://pugjs.org/api/getting-started.html
 
 // Parent template
 
 // Other views will inherit this template,
-// as a result we don't have to add css styling and all other 
+// as a result we don't have to add css styling and all other
 // repeating codes in child templates
 
-html   
+html
     head
         link(rel="stylesheet" type="text/css" href="../css/style.css")
+        link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css")
         title Clean and Green App
     body
-        h1 Clean and Green (CnG)
 
         // this block will get replaced by header in child template
-        block header    
+        block header
 
         // this block will get replaced by content in child template
         block content
