@@ -14,9 +14,15 @@ const PORT = 5000;                              // App will listen to this port
 router.get('/', (req, res) => {                 // GET method on path '/'
     res.render('homepage');                     // Rendering homepage.pug as temaplate for path '/'
 })
+router.get('/', (req, res) => {                 // GET method on path '/'
+    res.render('registration');                     // Rendering registration.pug as temaplate for path '/'
+})
 
 router.get('/signin', (req, res) => {           // Get method on [ath '/signin']
     res.render('signIn');                       // Rendering signIn.pug as template for path 'signin'
+})
+router.get('/mapui', (req, res) => {           // Get method on [ath '/mapui']
+    res.render('mapui');                       // Rendering mapui.pug as template for path 'mapui'
 })
 
 

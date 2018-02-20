@@ -1,33 +1,71 @@
 html, body {
-  height:100%
-  width: 100%;
-  background-image: url("img/greenbg.jpeg");
-  position: relative;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 100%;
+
+}
+.container-fluid{
+}
+/* Background cover */
+.cover {
+  background: #222 url('img/greenbg.jpeg') center center no-repeat;
   background-size: cover;
   color: white !important;
-}
-.register-box{
-  position: absolute;
-  left: 0;
-  top: 40%;
-}
+  height: 100%;
+  text-align: center;
+  align-items: center;
 
+}
+/* Registration Box */
+.register-box{
+  padding: 10px;
+  top: 15%;
+  border: 0px solid #fff;
+  /* Registration box shadow */
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+}
+/* Registration Form */
+.register-form{
+  border: 0px solid #fff; /* solid line to test code */
+  margin: 15px;
+  padding: 10px;
+}
+/* Sign-In Botton */
 .sign-in-btn{
+  padding-top: 5px;
   margin: 0;
   text-align: center;
 }
+/* Sign-In paragraph */
 #signin-option{
-  margin: 0;
   padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0;
+  text-align: center;
+}
+
+#register-header{
   text-align: center;
 }
 
 #signin-header{
   text-align: center;
 }
-#register-header{
+/* Sign-In Box */
+.signinbox{
+  top: 25%;
+  padding: 10px;
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+}
+.sign-in-form{
+  border: 0px solid #fff; /* solid line to test code */
+  margin: 15px;
+  padding: 10px;
+}
+.mapb{
+  padding-top: 10px;
+  margin: 0;
   text-align: center;
 }
