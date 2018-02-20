@@ -9,7 +9,7 @@ app.use(express.static('./public'));            // Providing 'public' directory 
 app.set('views', './public/views');             // Sets the location to find templates for routes
 app.set('view engine', 'pug');                  // Sets Pug as template engine for the app
 
-const PORT = 4000;                              // App will listen to this port
+const PORT = 5000;                              // App will listen to this port
 
 
 router.get('/', (req, res) => {                 // GET method on path '/'
