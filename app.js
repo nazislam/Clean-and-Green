@@ -3,6 +3,7 @@ var app = express();                            // An instance of express app
 var router = express.Router();                  // An instance of express router to work with routes
 
 
+
 app.use('/', router);                           // Apply the routes to our application
 app.use(express.static('./public'));            // Providing 'public' directory as static
 app.set('views', './public/views');             // Sets the location to find templates for routes
