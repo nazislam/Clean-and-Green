@@ -9,7 +9,7 @@ app.use(express.static('./public'));            // Providing 'public' directory 
 app.set('views', './public/views');             // Sets the location to find templates for routes
 app.set('view engine', 'pug');                  // Sets Pug as template engine for the app
 
-const PORT = 5000;                              // App will listen to this port
+const PORT = 3000;                              // App will listen to this port
 
 
 router.get('/', (req, res) => {                 // GET method on path '/'
@@ -19,11 +19,17 @@ router.get('/', (req, res) => {                 // GET method on path '/'
     res.render('registration');                     // Rendering registration.pug as temaplate for path '/'
 })
 
-router.get('/signin', (req, res) => {           // Get method on [ath '/signin']
+router.get('/signin', (req, res) => {           // Get method on path '/signin'
     res.render('signIn');                       // Rendering signIn.pug as template for path 'signin'
 })
-router.get('/mapui', (req, res) => {           // Get method on [ath '/mapui']
+router.get('/mapui', (req, res) => {           // Get method on path '/mapui'
     res.render('mapui');                       // Rendering mapui.pug as template for path 'mapui'
+})
+router.get('/mymap', (req, res) => {           // Get method on path '/mymap'
+    res.render('mymap');                       // Rendering mapui.pug as template for path 'mymap'
+})
+router.get('/dropoff', (req, res) => {           // Get method on ath '/dropoff'
+    res.render('dropoff');                       // Rendering mapui.pug as template for path 'dropoff'
 })
 
 

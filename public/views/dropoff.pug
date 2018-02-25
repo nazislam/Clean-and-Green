@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    p Fill in the details below to get your recyclables picked up!
+    form(method="post")
+        label(for="location") Location
+        input(id="location")
+        br
+        label(for="items") Items
+        input(id="items")
+        br
+        label(for="description") Anything more to say?
+        input(id="description")
+        br
+        button(type="submit") Request for a Pick Up
