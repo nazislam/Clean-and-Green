@@ -40,5 +40,5 @@ router.get('/mymap', (req, res) => {           // Get method on path '/mymap'
 
 /***** Listening to port 5000  **/
 app.listen(PORT, (req, res) => {
-    console.log('Running ON PORT 3000');
+    console.log('Running ON PORT:' + PORT);
 });
