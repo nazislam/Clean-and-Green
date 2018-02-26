@@ -2,14 +2,41 @@ extends layout
 
 block content
     p Fill in the details below to get your recyclables picked up!
-    form(method="post")
-        label(for="location") Location
-        input(id="location")
+    form(method='post')
+        h4 Location:
+        label(for='address-line-01') Address Line 1: 
+        input(type='text' id='address-line-01' name='address-line-01')
         br
-        label(for="items") Items
-        input(id="items")
+        label(for='address-line-02') Address Line 2 (optional): 
+        input(type='text' id='address-lin-02' name='address-line-02')
         br
-        label(for="description") Anything more to say?
-        input(id="description")
+        label(for='city') City: 
+        input(type='text' id='city' name='city')
         br
-        button(type="submit") Request for a Pick Up
+        label(for='zip') ZIP: 
+        input(type='text' id='zip' name='zip')
+        br
+        br
+        h4 Recycling Items:
+        input(type='checkbox' id='glass' name='item' value='glass') 
+        label(for='glass') Glass
+        br
+        input(type='checkbox' id='cartons' name='item' value='Cartons') 
+        label(for='cartons') Cartons
+        br
+        input(type='checkbox' id='cans' name='item' value='cans') 
+        label(for='cans') Cans
+        br
+        input(type='checkbox' id='paper' name='item' value='paper') 
+        label(for='paper') Paper
+        br
+        input(type='checkbox' id='plastic' name='item' value='plastic')
+        label(for='plastic') Plastic
+        br
+        label(for='container') Number of Container:
+        select(id='container' name='container')
+            option(value=1) 1
+            option(value=2) 2
+            option(value=3) 3
+        br
+        button(type='submit') Request for a Pick Up
