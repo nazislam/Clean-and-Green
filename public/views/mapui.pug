@@ -1,5 +1,5 @@
 extends layout
-
+/* Map User Interface */
 block content
     .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
       a.navbar-brand(href='#')
@@ -13,11 +13,40 @@ block content
             a.nav-link(href='#') Drop-Off 
           li.nav-item
             a.nav-link(href='#') Pick-Up
+    .mapbox
+      #map
+        
+      script.
+        var map;
+        var superchargers = [
+          {
+            location: 'Tejon Ranch',
+            latitude: 34.98661,
+            longitude: -118.94630
+          }
+        ];
 
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 44.69254300000001, lng: -73.46696199999997 },
+            zoom: 15
+          });
+        }
+
+      script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')
+
+    
+      
 
       
 
 
-          
+
+    
+
 
         
+
+      
+
+      
