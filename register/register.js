@@ -11,6 +11,7 @@ function getModel() {
     return require('./model-datastore');
 }
 
+registerRouter.use(bodyParser.json());
 registerRouter.use(bodyParser.urlencoded({ extended: false }));
 registerRouter.use(validator());
 
