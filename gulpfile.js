@@ -1,7 +1,7 @@
 var gulp = require('gulp');                     // Importing gulp
 var nodemon = require('gulp-nodemon');          // Importing gulp-nodemon (a package to allow auto-refresh)
 
-var jsFiles = ['*.js'];                         // list of files to watch for change
+var jsFiles = ['*.js', '**/*.js'];                         // list of files to watch for change
 
 
 // A gulp task to auto-refresh server if there is any change detected

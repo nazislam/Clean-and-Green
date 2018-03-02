@@ -10,15 +10,12 @@ registerRouter.use(bodyParser.urlencoded({ extended: false }));
 registerRouter.use(validator());
 
 registerRouter.route('/').get((req, res) => {
-    res.render('../views/register', {
-        data: {},
-        errors: {}
-    });
+    res.render('../views/register');
 });
 
 registerRouter.route('/').post((req, res) => {
     console.log(req.body);
-    res.render('../views.register');
+    res.send('Success');
 });
 
 
