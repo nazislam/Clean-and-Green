@@ -36,8 +36,15 @@ registerRouter.route('/signIn').post(
     }
 );
 
-registerRouter.route('/profile').get((req, res) => {
-    res.json(req.user);
+registerRouter.route('/profile')
+    .all(function(req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        }
+        next();
+    })
+    .get((req, res) => {
+        res.json(req.user);
 });
 
 module.exports = registerRouter;

@@ -11,7 +11,7 @@ dropoffRouter.use(bodyParser.urlencoded({ extended: false }));
 
 
 dropoffRouter.route('/').get((req, res) => {           // Get method on path '/dropoff'
-    res.render('../views/dropoff');                       // Rendering mapui.pug as template for path 'dropoff'
+    res.render('../views/dropoff');
 });
 
 dropoffRouter.route('/').post((req, res) => {
