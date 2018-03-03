@@ -1,27 +1,7 @@
 extends layout
 
-block header
-
 block content
-    .cover
-      .register-box.container-fluid.col-10.col-md-5.col-lg-4
-        h4#register-header Register
-        .register-form
-          .form-group
-            //label(for="usr") First Name
-            input.form-control(type='text', placeholder="First Name")
-          .form-group
-            //label(for="usr") Last Name
-            input.form-control(type='text', placeholder="Last Name")
-          .form-group
-            //label(for="email") E-mail
-            input#exampleInputEmail1.form-control(type='email', placeholder="E-mail")
-          .form-group
-            //label(for="exampleInputPassword1") Password
-            input#exampleInputPassword1.form-control(type='password', placeholder="Password")
-          .sign-in-btn
-            button.btn.btn-success(type='submit') Submit
-            p#signin-option Already have an account?
-            a.btn.btn-success(href='/signin', role='button') Sign In
-    section.info
-        
+    h2 HOMEPAGE
+    a(href='/register') Register
+    br
+    a(href='/signIn') Sign In

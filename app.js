@@ -1,10 +1,15 @@
 'use strict';
 
-var express = require('express');               // Importing express
-var bodyParser = require('body-parser');
-var app = express();                            // An instance of express app
-var router = express.Router();                  // An instance of express router to work with routes
-var dropoffRouter = require('./dropoff/crud');
+const express = require('express');               // Importing express
+const app = express();                            // An instance of express app
+const bodyParser = require('body-parser');
+const router = express.Router();                  // An instance of express router to work with routes
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const session = require('express-session');
+
+const registerRouter = require('./register/register');
+const dropoffRouter = require('./dropoff/crud');
 
 dropoffRouter.use(bodyParser.urlencoded({ extended: false }));
 
@@ -13,16 +18,21 @@ app.use(express.static('./public'));            // Providing 'public' directory 
 app.set('views', './public/views');             // Sets the location to find templates for routes
 app.set('view engine', 'pug');                  // Sets Pug as template engine for the app
 
+app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+require('./config/passport')(app);
+
+app.use('/register', registerRouter);
 app.use('/dropoff', dropoffRouter);
 
 const PORT = 5000;                              // App will listen to this port
 
-
 router.get('/', (req, res) => {                 // GET method on path '/'
-    res.render('homepage');                     // Rendering homepage.pug as temaplate for path '/'
-})
-router.get('/', (req, res) => {                 // GET method on path '/'
-    res.render('registration');                     // Rendering registration.pug as temaplate for path '/'
+    res.render('register');                     // Rendering homepage.pug as temaplate for path '/'
 })
 
 router.get('/signin', (req, res) => {           // Get method on path '/signin'

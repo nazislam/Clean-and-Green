@@ -8,14 +8,15 @@ block content
     .signinbox.container-fluid.col-10.col-sm-6.col-md-6.col-lg-4
       h3#signin-header Sign In
       .sign-in-form
-        .form-group
-          //label(for="email") E-mail
-          input#exampleInputEmail1.form-control(type='email', placeholder="E-mail")
-        .form-group
-          //label(for="exampleInputPassword1") Password
-          input#exampleInputPassword1.form-control(type='password', placeholder="Password")
-        .sign-in-btn
-          button.btn.btn-success(type='submit') Sign In
+        form(action='register/signIn' method='POST')
+          .form-group
+            //label(for="email") E-mail
+            input#exampleInputEmail1.form-control(type='email' name='email' placeholder="E-mail")
+          .form-group
+            //label(for="exampleInputPassword1") Password
+            input#exampleInputPassword1.form-control(type='password' name='password' placeholder="Password")
+          .sign-in-btn
+            button.btn.btn-success(type='submit') Sign In
         .mapb
           a.btn.btn-success(href='/mapui', role='button') MapUI
         
