@@ -1,0 +1,33 @@
+extends layout
+
+block header
+    .container-fluid
+        h2 User Profile
+
+block content
+
+    .container-fluid
+        h4 Welcome, #{user.first_name}!
+        br
+
+        table.table.table-striped
+            tbody
+                thead.thead-dark
+                    tr
+                        th User Information
+                        th 
+                tbody
+                    tr
+                        th(scope="row") First Name
+                        td= user.first_name
+                    tr
+                        th(scope="row") Last Name
+                        td= user.last_name
+                    tr
+                        th(scope="row") Email Address
+                        td= user.email
+                    tr
+                        th(scope="row") Password
+                        td= user.password
+
+

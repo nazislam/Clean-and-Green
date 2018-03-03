@@ -44,7 +44,7 @@ registerRouter.route('/profile')
         next();
     })
     .get((req, res) => {
-        res.json(req.user);
+        res.render('profile', { user: req.user });
 });
 
 module.exports = registerRouter;

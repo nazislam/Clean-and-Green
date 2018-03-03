@@ -7,6 +7,10 @@ const ds = Datastore({
     projectId: 'clean-and-green'
 })
 
+function getModel() {
+    return require('../../datastore/model-datastore');
+}
+
 module.exports = function() {
     passport.use(new LocalStrategy({
         usernameField: 'email',
@@ -21,23 +25,14 @@ module.exports = function() {
             // User entities found.
             const users = results[0];
 
-            console.log('User:');
-            console.log(users[0]);
             if (users[0]) {
+                // console.log('User:');
+                // console.log(getModel().toDatastore(users[0]));
                 var user = users[0];
                 done(null, user);
             } else {
                 done(null, false, { message: 'Wrong Credentials' });
-                // done('Wrong credentials', null);
             }
-            // users.forEach(user => console.log(user));
         });
-
-
-//        var user = {
-//            email: email,
-//            password: password
-//        };
-//        done(null, user);
     }));
 };
