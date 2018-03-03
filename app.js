@@ -32,7 +32,7 @@ app.use('/dropoff', dropoffRouter);
 const PORT = 5000;                              // App will listen to this port
 
 router.get('/', (req, res) => {                 // GET method on path '/'
-    res.render('homepage');                     // Rendering homepage.pug as temaplate for path '/'
+    res.render('register');                     // Rendering homepage.pug as temaplate for path '/'
 })
 
 router.get('/signin', (req, res) => {           // Get method on path '/signin'
