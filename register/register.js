@@ -20,7 +20,6 @@ registerRouter.route('/').get((req, res) => {
 });
 
 registerRouter.route('/').post((req, res) => {
-    console.log(req.body);
     req.login(req.body, () => {
         const data = req.body;
         getModel().create(data);
