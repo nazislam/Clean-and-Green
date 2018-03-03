@@ -31,7 +31,11 @@ app.use('/dropoff', dropoffRouter);
 
 const PORT = 5000;                              // App will listen to this port
 
-router.get('/', (req, res) => {                 // GET method on path '/'
+router.get('/', (req, res) => {
+    res.redirect('/register');
+})
+
+router.get('/register', (req, res) => {                 // GET method on path '/'
     res.render('register');                     // Rendering homepage.pug as temaplate for path '/'
 })
 
