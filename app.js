@@ -29,7 +29,7 @@ require('./config/passport')(app);
 app.use('/register', registerRouter);
 app.use('/dropoff', dropoffRouter);
 
-const port = process.env.PORT | 5000;
+const port = process.env.PORT || 5000;
 
 router.get('/', (req, res) => {
     res.redirect('/register');
