@@ -29,7 +29,7 @@ require('./config/passport')(app);
 app.use('/register', registerRouter);
 app.use('/dropoff', dropoffRouter);
 
-const PORT = 5000;                              // App will listen to this port
+const port = process.env.PORT | 5000;
 
 router.get('/', (req, res) => {
     res.redirect('/register');
@@ -53,6 +53,6 @@ router.get('/mymap', (req, res) => {           // Get method on path '/mymap'
 
 
 /***** Listening to port 5000  **/
-app.listen(PORT, (req, res) => {
-    console.log('Running ON PORT:' + PORT);
+app.listen(port, (req, res) => {
+    console.log('Running ON PORT:' + port);
 });
