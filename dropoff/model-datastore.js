@@ -1,8 +1,9 @@
 'use strict';
 
 const Datastore = require('@google-cloud/datastore');
+const config = require('../config/config');
 const ds = Datastore({
-    projectId: 'clean-and-green'
+    projectId: config.get('GCLOUD_PROJECT')
 })
 const kind = "Dropoff";
 

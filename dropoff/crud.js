@@ -10,7 +10,7 @@ function getModel() {
 dropoffRouter.use(bodyParser.urlencoded({ extended: false }));
 
 
-dropoffRouter.route('/').get((req, res) => {           // Get method on path '/dropoff'
+dropoffRouter.route('/').get((req, res) => {
     res.render('../views/dropoff');
 });
 

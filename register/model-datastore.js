@@ -1,7 +1,8 @@
 'use strict';
 
 const Datastore = require('@google-cloud/datastore');
-const ds = Datastore({ projectId: 'clean-and-green' });
+const config = require('../config/config');
+const ds = Datastore({ projectId: config.get('GCLOUD_PROJECT') });
 const kind = "User";
 
 function fromDatastore (obj) {
