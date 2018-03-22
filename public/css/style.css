@@ -84,3 +84,33 @@ html, body {
   width: 100%;
   height: 550px;
 }
+.homepage{
+  background: #222 url('img/handgreen.jpg') center center no-repeat;
+  background-size: cover;
+  color: white !important;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+
+}
+.info{
+  background-color: #222;
+  opacity: 0.9;
+  padding: 20px;
+  top: 5%;
+  border: 0px solid #fff;
+  /* Info box shadow */
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+}
+.homeregister{
+  margin: 15px;
+}
+.profilebox{
+  padding-top: 15px;
+  margin: 15px;
+}
+.profilepic{
+  padding: 0px;
+}

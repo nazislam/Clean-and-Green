@@ -1,33 +1,31 @@
 extends layout
 
 block header
-    .container-fluid
-        h2 User Profile
-
+  
 block content
-
-    .container-fluid
-        h4 Welcome, #{user.first_name}!
-        br
-
-        table.table.table-striped
-            tbody
-                thead.thead-dark
-                    tr
-                        th User Information
-                        th 
+  .container-fluid
+    .profilebox
+      .panel.panel-info
+        .panel-heading
+          h3.panel-title Welcome, #{user.first_name}!
+        .panel-body
+          .row
+            .col-md-4.col-lg-3(align='center')
+              img.profilepic.img-circle.img-responsive(alt='User Pic', src='https://i.pinimg.com/originals/7a/36/7d/7a367dc0017ddb08a150071aedeb30f5.png')
+            .col-md-8.col-lg-9
+              table.table.table-user-information
                 tbody
-                    tr
-                        th(scope="row") First Name
-                        td= user.first_name
-                    tr
-                        th(scope="row") Last Name
-                        td= user.last_name
-                    tr
-                        th(scope="row") Email Address
-                        td= user.email
-                    tr
-                        th(scope="row") Password
-                        td= user.password
-
-
+                  tr
+                    td First Name:
+                    td= user.first_name
+                  tr
+                    td Last Name:
+                    td= user.last_name
+                  tr
+                    td E-mail:
+                    td= user.email
+                  tr
+                  tr
+                    td Password:
+                    td= user.password
+              a.btn.btn-primary(href='/mapui') Recycle

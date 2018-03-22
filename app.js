@@ -1,10 +1,10 @@
 'use strict';
 
 const express = require('express');
-const app = express();            
+const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const router = express.Router(); 
+const router = express.Router();
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
@@ -16,10 +16,10 @@ const dropoffRouter = require('./dropoff/crud');
 
 dropoffRouter.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', router);           
+app.use('/', router);
 app.use(express.static('./public'));
 app.set('views', './public/views');
-app.set('view engine', 'pug');    
+app.set('view engine', 'pug');
 
 app.use(cookieParser());
 app.use(session({
@@ -34,21 +34,21 @@ app.use('/dropoff', dropoffRouter);
 
 
 router.get('/', (req, res) => {
-    res.redirect('/register');
+    res.redirect('/home');
 })
 
+router.get('/home', (req, res) => {
+    res.render('home');
+})
 router.get('/register', (req, res) => {
-    res.render('register');      
+    res.render('register');
 })
 
-router.get('/signin', (req, res) => { 
-    res.render('signIn');            
+router.get('/signin', (req, res) => {
+    res.render('signIn');
 })
 router.get('/mapui', (req, res) => {
-    res.render('mapui');            
-})
-router.get('/mymap', (req, res) => {
-    res.render('mymap');           
+    res.render('mapui');
 })
 
 
