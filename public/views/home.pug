@@ -3,11 +3,34 @@ extends layout
 block header
 
 block content
-    .homepage
-      .info.container-fluid.col-10
-        h1#about Clean and Green
-        p Introducing Clean and Green service  that will help you recycle at your convinience.
-        p Our easy to navigate interface let's you request a recycling pick up and drop off within minutes. We will pick up your recycling with a day of your request.
-        a.homeregister.btn.btn-success(href='/register', role='button') Register
-        a.homesignin.btn.btn-success(href='/signin', role='button') Sign In
-        
+  .container-fluid.cover-home
+    .caption-home
+      h1.display-3 Clean and Green
+      p#pcaption  Recycling Made Easy
+      a.btn.btn-success.btn-lg.bottons(href='/register', role='button') Register
+      a.btn.btn-success.btn-lg.bottons(href='/signin', role='button') Sign In
+  .container.marketing
+    .row
+      .col.how-it-works
+        h1 How it works?
+    .row
+      .col-lg-4
+        i.fas.fa-user-circle.fa-7x
+        h2 Register
+        p
+          | Register for a free account. Our service will allow you to recycle at your convinience.
+        br
+      .col-lg-4
+        i.fas.fa-location-arrow.fa-7x
+        h2 Request a pick up
+        p
+          | Request a pick up by by telling us your location. Our service provides pick up requests for plastic, glass, and cans.
+        br
+      .col-lg-4
+        i.fas.fa-cubes.fa-7x
+        h2 Leave your items
+        p
+          | Once you requested a pick up, prepare your recyclables. Leave your items at your specified location and we will pick it up.
+        br
+    footer.site-footer
+      p This site is built by Clean and Green Team © 2018 
