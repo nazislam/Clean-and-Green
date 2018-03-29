@@ -2,7 +2,9 @@ html, body {
   height: 100%;
 }
 
-.container-fluid {}
+.container-fluid {
+  font-family: 'Raleway', sans-serif;
+}
 
 /* Background cover */
 
