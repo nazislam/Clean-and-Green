@@ -30,16 +30,12 @@ html, body {
 }
 
 /* Registration Form */
-
 .register-form {
-  border: 0px solid #fff;
-  /* solid line to test code */
   margin: 15px;
   padding: 10px;
 }
 
 /* Sign-In Botton */
-
 .sign-in-btn {
   padding-top: 5px;
   margin: 0;
@@ -47,7 +43,6 @@ html, body {
 }
 
 /* Sign-In paragraph */
-
 #signin-option {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -64,7 +59,6 @@ html, body {
 }
 
 /* Sign-In Box */
-
 .signinbox {
   top: 25%;
   padding: 10px;
@@ -74,14 +68,11 @@ html, body {
 }
 
 .sign-in-form {
-  border: 0px solid #fff;
-  /* solid line to test code */
   margin: 15px;
   padding: 10px;
 }
 
 /* Drop-off Form */
-
 .drop-off-form {
   padding: 10px;
   top: 10%;
@@ -92,41 +83,9 @@ html, body {
   box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
 }
 
-.map {
-  border: 1px solid black;
-  margin: 0px;
-  padding: 0px;
-}
-
 #map {
-  border: 1px solid black;
   width: 100%;
   height: 550px;
-}
-
-.homepage {
-  background: #222 url('img/handgreen.jpg') center center no-repeat;
-  background-size: cover;
-  color: white !important;
-  height: 100%;
-  text-align: center;
-  align-items: center;
-}
-
-.info {
-  background-color: #222;
-  opacity: 0.9;
-  padding: 20px;
-  top: 5%;
-  border: 0px solid #fff;
-  /* Info box shadow */
-  -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
-  box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
-}
-
-.homeregister {
-  margin: 15px;
 }
 
 .profilebox {
@@ -141,10 +100,10 @@ html, body {
   margin: 10px;
 }
 
-/* CSS below is for Home Page Design */
+/* HOME PAGE DESIGN */
 
 .cover-home {
-  background: url("img/recycle.jpg") no-repeat;
+  background: url("img/recycle.jpg") center no-repeat;
   position: relative;
   background-attachment: fixed;
   background-size: cover;
@@ -159,7 +118,6 @@ html, body {
   top: 40%;
   text-align: center;
   color: white;
-  font-family: 'Raleway', sans-serif;
 }
 
 #pcaption {
@@ -170,7 +128,7 @@ html, body {
   margin: 5px;
 }
 
-/* MARKETING CONTENT */
+/* HOW IT WORKS CONTENT */
 
 .how-it-works {
   width: 100%;
@@ -183,59 +141,25 @@ html, body {
 
 /* Center align the text within the three columns below the carousel */
 
-.marketing .col-lg-4 {
+.how-box .col-lg-4 {
   margin-top: 2rem;
   text-align: center;
 }
 
-.marketing h2 {
+.how-box h2 {
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
 }
 
-.marketing .col-lg-4 p {
+.how-box .col-lg-4 p {
   margin-right: .75rem;
   margin-left: .75rem;
 }
 
-/* Featurettes */
-
-.featurette-divider {
-  margin: 5rem 0;
-  /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -.05rem;
-}
 
 .site-footer {
   margin: 10px;
   padding: 5px;
   color: black;
   text-align: center;
-}
-
-/* RESPONSIVE CSS */
-
-@media (min-width: 40em) {
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
-  }
-  .featurette-heading {
-    font-size: 50px;
-  }
-}
-
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem;
-  }
 }

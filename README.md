@@ -1,5 +1,6 @@
 # CSC-Project-Clean-Green
 Project "Clean &amp; Green" for CSC436/446
+Team Members: Sam Tursunov, Naz Islam, Vasu
 
 
 In order to run the application:
@@ -10,12 +11,10 @@ In order to run the application:
 4. *RUNNING THE SERVER:*
 	1. In terminal, do `node app.js` to run the server. It will run the server on localhost on port 5000. If server is run with this command, it will not restart automatically after every saved change. To enable auto restart, skip this step and do next step.
 	2. In order to enable the server restart after any change detected, do the following:
-	
-		3. In your Terminal, do `sudo npm install -g gulp`, which will install Gulp globally on your machine. 
+
+		3. In your Terminal, do `sudo npm install -g gulp`, which will install Gulp globally on your machine.
 		4. Then, `gulp serve`, to run the server. Now, it will keep track of any change in files. After every saved changes, the server will restart automatically.
 
 	Run the server with Gulp, so it can restart automatically after every change. This makes writing code and testing much easier. :)
 
 5. Once the serve is running, access it `http://localhost:5000`.
-
-Basic routings are setup, I've added a registration form, and sign in form and added a sample (empty) stylesheet in `layout.pug`. Not connected to Google datastore yet, once our professor opens it for us, we can connect to database and create user authentication. Comments have been added to describe the code. Add some styles to the template, change the routes to explore how they all fit together. :) :). 
