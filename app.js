@@ -1,3 +1,6 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
 'use strict';
 
 const express = require('express');
@@ -37,21 +40,23 @@ app.use('/pickup', pickupRouter);
 
 router.get('/', (req, res) => {
     res.redirect('/home');
-})
+});
 
 router.get('/home', (req, res) => {
     res.render('home');
-})
+});
+
 router.get('/register', (req, res) => {
     res.render('register');
-})
+});
 
 router.get('/signin', (req, res) => {
     res.render('signIn');
-})
+});
+
 router.get('/mapui', (req, res) => {
     res.render('mapui');
-})
+});
 
 /*
 router.get('/pickup', (req, res) => {

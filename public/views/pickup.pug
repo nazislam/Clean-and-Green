@@ -8,14 +8,24 @@ html
 
     h2 Pickup Requests
     each entry in entries
-        .card(style='width: 18rem')
+      .div(style='padding: 10px;')
+        .card(style='width: 18rem;')
           .card-body
-            a(href=`/entries/${entry.id}`)
-              .card-title
-                h5= entry.addressLine01
-              .card-subtitle.mb-2.text-muted
-                h6= entry.addressLine02
+            .card-title
+              h5= entry.addressLine01
+            .card-subtitle.mb-2.text-muted
+              h6= entry.addressLine02
+              h6 city: #{entry.city}
+              h6 zip: #{entry.zip}
             .card-text
               p 
-                i some description
-            a.card-link(href='#') Pick Up
+                i request by #{entry.createdBy}
+            a.card-link.btn.btn-sm.btn-primary(href='#') Pick Up
+            a.card-link.btn.btn-sm.btn-primary(href=`/entries/${entry.id}`) Details
+
+
+
+
+
+
+
