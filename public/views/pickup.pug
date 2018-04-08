@@ -1,7 +1,21 @@
 doctype html
 html
   head
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
     title #{title}
   body
-    h2 Pickup Requests
 
+
+    h2 Pickup Requests
+    each entry in entries
+        .card(style='width: 18rem')
+          .card-body
+            a(href=`/entries/${entry.id}`)
+              .card-title
+                h5= entry.addressLine01
+              .card-subtitle.mb-2.text-muted
+                h6= entry.addressLine02
+            .card-text
+              p 
+                i some description
+            a.card-link(href='#') Pick Up
