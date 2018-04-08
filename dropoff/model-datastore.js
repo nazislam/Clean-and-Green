@@ -26,6 +26,13 @@ function toDatastore (obj) {
     return results;
 }
 
+function processItemAsArray(itemAsString) {
+  var a = itemAsString;
+  var result = [];
+  result.push(a);
+  return result;
+}
+
 function create(data) {
     const entity = {
         key: ds.key(kind),
@@ -36,4 +43,4 @@ function create(data) {
 
 
 
-module.exports = { create };
+module.exports = { create, processItemAsArray };

@@ -15,15 +15,19 @@ dropoffRouter.route('/').get((req, res) => {
 });
 
 dropoffRouter.route('/').post((req, res) => {
-    const data = req.body;
-    if (req.user) {
-      data.createdBy = req.user.first_name;
-    } else {
-      data.createdBy = 'anonymous';
-    }
-    getModel().create(data);
+  const data = req.body;
+  console.log(typeof data.item)
+  if (typeof data.item === 'string') {
+    data.item = getModel().processItemAsArray(data.item);
+  }
+  if (req.user) {
+    data.createdBy = req.user.first_name + ' ' + req.user.last_name;
+  } else {
+    data.createdBy = 'anonymous';
+  }
+  getModel().create(data);
 
-    res.render('success.pug');
+  res.render('success.pug');
 });
 
 module.exports = dropoffRouter;

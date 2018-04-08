@@ -1,11 +1,9 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
     title #{title}
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
   body
-
-
     h2 Pickup Requests
     each entry in entries
       .div(style='padding: 10px;')
@@ -15,11 +13,17 @@ html
               h5= entry.addressLine01
             .card-subtitle.mb-2.text-muted
               h6= entry.addressLine02
-              h6 city: #{entry.city}
-              h6 zip: #{entry.zip}
             .card-text
+              h6 City: #{entry.city}
+              h6 ZIP: #{entry.zip}
+              h6 Items:
+                // p= entry.item[1]
+                ul
+                  // li= items
+                  each val in entry.item
+                    li= val
               p 
-                i request by #{entry.createdBy}
+                i.text-muted created by #{entry.createdBy}
             a.card-link.btn.btn-sm.btn-primary(href='#') Pick Up
             a.card-link.btn.btn-sm.btn-primary(href=`/entries/${entry.id}`) Details
 
