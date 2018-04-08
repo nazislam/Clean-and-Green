@@ -14,7 +14,7 @@ pickupRouter.get('/', (req, res, next) => {
       return;
     }
     res.render('pickup.pug', {
-      entries: entities
+      title: 'Pickup', entries: entities
       // nextPageToken: cursor
     });
   });
