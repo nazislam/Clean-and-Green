@@ -16,6 +16,11 @@ dropoffRouter.route('/').get((req, res) => {
 
 dropoffRouter.route('/').post((req, res) => {
     const data = req.body;
+    if (req.user) {
+      data.createdBy = req.user.first_name;
+    } else {
+      data.createdBy = 'anonymous';
+    }
     getModel().create(data);
 
     res.render('success.pug');
