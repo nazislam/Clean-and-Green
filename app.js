@@ -13,6 +13,7 @@ const port = process.env.PORT || config.get("PORT");
 
 const registerRouter = require('./register/register');
 const dropoffRouter = require('./dropoff/crud');
+const pickupRouter = require('./pickup/pickup');
 
 dropoffRouter.use(bodyParser.urlencoded({ extended: false }));
 
@@ -31,6 +32,7 @@ require('./config/passport')(app);
 
 app.use('/register', registerRouter);
 app.use('/dropoff', dropoffRouter);
+app.use('/pickup', pickupRouter);
 
 
 router.get('/', (req, res) => {
@@ -51,8 +53,11 @@ router.get('/mapui', (req, res) => {
     res.render('mapui');
 })
 
-
-
+/*
+router.get('/pickup', (req, res) => {
+  res.render('pickup', { title: 'Pickup Requests' });
+});
+*/
 
 app.listen(port, (req, res) => {
     console.log('Running ON PORT:' + port);
