@@ -15,29 +15,31 @@ registerRouter.use(bodyParser.json());
 registerRouter.use(bodyParser.urlencoded({ extended: false }));
 registerRouter.use(validator());
 
-registerRouter.route('/').get((req, res) => {
+registerRouter.route('/')
+  .get((req, res) => {
     res.render('../views/register');
-});
-
-registerRouter.route('/').post((req, res) => {
+  })
+  .post((req, res) => {
     req.login(req.body, () => {
-        const data = req.body;
-        getModel().create(data);
+      const data = req.body;
+      getModel().create(data);
 
-        // res.redirect('/register/profile');
-        res.redirect('/register/mapui');
+      // res.redirect('/register/profile');
+      res.redirect('/register/mapui');
     });
 });
 
 registerRouter.route('/signIn').post(
-    passport.authenticate('local', { failureRedirect: '/' }),
+    passport.authenticate('local', { session: true, 
+                // successRedirect: '/register/profile', 
+                failureRedirect: '/' }),
     (req, res) => {
         // res.redirect('/register/profile');
         res.redirect('/register/mapui');
     }
 );
 
-/*
+
 registerRouter.route('/profile')
     .all(function(req, res, next) {
         if (!req.user) {
@@ -48,7 +50,7 @@ registerRouter.route('/profile')
     .get((req, res) => {
         res.render('profile', { user: req.user });
 });
-*/
+
 
 registerRouter.route('/mapui')
     .all(function(req, res, next) {

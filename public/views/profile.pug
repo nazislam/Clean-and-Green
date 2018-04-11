@@ -3,6 +3,7 @@ extends layout
 block header
   
 block content
+  // - var user = req.user
   .container-fluid
     .profilebox
       .panel.panel-info
@@ -26,11 +27,16 @@ block content
                     td= user.email
                   tr
                   tr
+                    td User Type:
+                    td= user.userType
+                  tr
+                  tr
                     td Password:
                     td= user.password
-              if (user.client === 'on')
-                a.btn.btn-primary(href='/dropoff') Dropoff
+              if (user.userType === 'client')
+                a.btn.btn-primary.mx-2(href='/dropoff') Dropoff
               else
-                  a.btn.btn-primary(href='/pickup') Pickup
+                a.btn.btn-primary.mx-2(href='/pickup') Pickup
               
-              a.btn.btn-primary(href='/mapui') Recycle
+              a.btn.btn-primary.mx-2(href='/register/mapui') Map UI
+              a.btn.btn-primary.mx-2(href='/logout') Logout
