@@ -28,14 +28,14 @@ dropoffRouter.route('/').post((req, res) => {
     data.item = getModel().processItemAsArray(data.item);
   }
   if (req.user) {
-    data.createdBy = req.user.first_name + ' ' + req.user.last_name;
+    data.createdBy = req.user.firstName + ' ' + req.user.lastName;
   } else {
     data.createdBy = 'anonymous';
   }
   data.pickedUpBy = '';
   getModel().create(data);
 
-  res.render('success.pug');
+  res.redirect('/register/mapui');
 });
 
 module.exports = dropoffRouter;
