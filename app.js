@@ -55,7 +55,13 @@ router.get('/signin', (req, res) => {
 });
 
 router.get('/mapui', (req, res) => {
-    res.render('mapui');
+  console.log(req.user);
+    res.render('mapui', { user: req.user });
+});
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
 });
 
 /*

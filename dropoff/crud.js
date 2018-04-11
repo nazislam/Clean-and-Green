@@ -10,9 +10,16 @@ function getModel() {
 dropoffRouter.use(bodyParser.urlencoded({ extended: false }));
 
 
-dropoffRouter.route('/').get((req, res) => {
+dropoffRouter.route('/')
+  .all(function(req, res, next) {
+      if (!req.user) {
+          res.redirect('/');
+      }
+      next();
+  })
+  .get((req, res) => {
     res.render('../views/dropoff');
-});
+  });
 
 dropoffRouter.route('/').post((req, res) => {
   const data = req.body;
@@ -25,6 +32,7 @@ dropoffRouter.route('/').post((req, res) => {
   } else {
     data.createdBy = 'anonymous';
   }
+  data.pickedUpBy = '';
   getModel().create(data);
 
   res.render('success.pug');

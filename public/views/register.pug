@@ -20,6 +20,12 @@ block content
             .form-group
               //label(for="exampleInputPassword1") Password
               input#exampleInputPassword1.form-control(type='password' name='password' placeholder="Password")
+            .form-group
+              div(class='btn-group btn-group-toggle' data-toggle='buttons')
+                label(class='btn btn-outline-light') Client
+                  input(type='radio' name='client' id='option1' autocomplete='off') 
+                label(class='btn btn-outline-light') Driver
+                  input(type='radio' name='driver' id='option2' autocomplete='off')
             .sign-in-btn
               button.btn.btn-success(type='submit') Sign Up
           p#signin-option Already have an account?

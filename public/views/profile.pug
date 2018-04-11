@@ -28,4 +28,9 @@ block content
                   tr
                     td Password:
                     td= user.password
+              if (user.client === 'on')
+                a.btn.btn-primary(href='/dropoff') Dropoff
+              else
+                  a.btn.btn-primary(href='/pickup') Pickup
+              
               a.btn.btn-primary(href='/mapui') Recycle

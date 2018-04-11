@@ -24,17 +24,20 @@ registerRouter.route('/').post((req, res) => {
         const data = req.body;
         getModel().create(data);
 
-        res.redirect('/register/profile');
+        // res.redirect('/register/profile');
+        res.redirect('/register/mapui');
     });
 });
 
 registerRouter.route('/signIn').post(
     passport.authenticate('local', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect('/register/profile');
+        // res.redirect('/register/profile');
+        res.redirect('/register/mapui');
     }
 );
 
+/*
 registerRouter.route('/profile')
     .all(function(req, res, next) {
         if (!req.user) {
@@ -44,6 +47,18 @@ registerRouter.route('/profile')
     })
     .get((req, res) => {
         res.render('profile', { user: req.user });
+});
+*/
+
+registerRouter.route('/mapui')
+    .all(function(req, res, next) {
+        if (!req.user) {
+            res.redirect('/');
+        }
+        next();
+    })
+    .get((req, res) => {
+        res.render('mapui', { user: req.user });
 });
 
 module.exports = registerRouter;
