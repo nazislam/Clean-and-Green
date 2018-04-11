@@ -23,7 +23,6 @@ dropoffRouter.route('/')
 
 dropoffRouter.route('/').post((req, res) => {
   const data = req.body;
-  console.log(typeof data.item)
   if (typeof data.item === 'string') {
     data.item = getModel().processItemAsArray(data.item);
   }
