@@ -7,18 +7,19 @@ function getModel() {
     return require('./model-datastore');
 }
 
-pickupRouter.get('/', (req, res, next) => {
-  getModel().list(10, req.query.pageToken, (err, entities, cursor) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.render('pickup.pug', {
-      title: 'Pickup', entries: entities
-      // nextPageToken: cursor
+pickupRouter
+  .get('/', (req, res, next) => {
+    getModel().list(10, req.query.pageToken, (err, entities, cursor) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.render('pickup.pug', {
+        title: 'Pickup', entries: entities
+        // nextPageToken: cursor
+      });
     });
   });
-});
 
 /*
 pickupRouter.route('/')
