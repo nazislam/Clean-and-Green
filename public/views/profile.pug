@@ -17,26 +17,26 @@ block content
               table.table.table-user-information
                 tbody
                   tr
-                    td First Name:
+                    td #[b First Name:]
                     td= user.firstName
                   tr
-                    td Last Name:
+                    td #[b Last Name:]
                     td= user.lastName
                   tr
-                    td E-mail:
+                    td #[b E-mail Address:]
                     td= user.email
                   tr
                   tr
-                    td User Type:
-                    td= user.userType
+                    td #[b User Type:]
+                    td= user.userType.charAt(0).toUpperCase() + user.userType.slice(1)
                   tr
                   tr
-                    td Password:
+                    td #[b Password:]
                     td= user.password
               if (user.userType === 'client')
-                a.btn.btn-primary.mx-2(href='/dropoff') Dropoff
+                a.btn.btn-primary.mx-2(href='/dropoff') Pick Up
               else
-                a.btn.btn-primary.mx-2(href='/pickup') Pickup
+                a.btn.btn-primary.mx-2(href='/pickup') Recyclables
               
               a.btn.btn-primary.mx-2(href='/register/mapui') Map UI
               a.btn.btn-primary.mx-2(href='/logout') Logout
