@@ -1,35 +1,39 @@
-'use strict';
-
-const express = require('express'),
-  pickupRouter = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
+const pickupRouter = express.Router();
 
 function getModel() {
     return require('./model-datastore');
 }
 
-pickupRouter
-  .get('/', (req, res, next) => {
-    getModel().list(10, req.query.pageToken, (err, entities, cursor) => {
-      if (err) {
-        next(err);
-        return;
-      }
-      res.render('pickup.pug', {
-        title: 'Pickup', entries: entities
-        // nextPageToken: cursor
-      });
-    });
-  });
+// Automatically parse request body as form data
+pickupRouter.use(bodyParser.urlencoded({ extended: false }));
 
-/*
+
 pickupRouter.route('/')
-  .get(function(req ,res) {
-    var entries = getModel().listRequest();
-    console.log('----')
-    console.log(entries);
-    console.log('----')
-    res.render('pickup', { entries: entries, a: [1,2,3] });
-  });
-*/
+  .all(function(req, res, next) {
+      if (!req.user) {
+          res.redirect('/');
+      }
+      next();
+  })
+  .get((req, res) => {
+    res.render('../views/pickup');
+  })
+  .post((req, res) => {
+    const data = req.body;
+    if (typeof data.item === 'string') {
+      data.item = getModel().processItemAsArray(data.item);
+    }
+    if (req.user) {
+      data.createdBy = req.user.firstName + ' ' + req.user.lastName;
+    } else {
+      data.createdBy = 'anonymous';
+    }
+    data.pickedUpBy = '';
+    getModel().create(data);
+
+    res.redirect('/register/mapui');
+});
 
 module.exports = pickupRouter;
