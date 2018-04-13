@@ -69,11 +69,9 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-/*
-router.get('/pickup', (req, res) => {
-  res.render('pickup', { title: 'Pickup Requests' });
+app.get('*', function(req, res){
+  res.render('error');
 });
-*/
 
 app.listen(port, (req, res) => {
     console.log('Running ON PORT:' + port);
