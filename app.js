@@ -15,10 +15,13 @@ const config = require('./config/config');
 const port = process.env.PORT || config.get("PORT");
 
 const registerRouter = require('./register/register');
-const dropoffRouter = require('./dropoff/crud');
 const pickupRouter = require('./pickup/pickup');
+const recyclablesRouter = require('./recyclables/recyclables');
 
-dropoffRouter.use(bodyParser.urlencoded({ extended: false }));
+// dropoff -> pickup
+// pickup -> recyclables
+
+pickupRouter.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', router);
 app.use(express.static('./public'));
@@ -34,8 +37,8 @@ app.use(session({
 require('./config/passport')(app);
 
 app.use('/register', registerRouter);
-app.use('/dropoff', dropoffRouter);
 app.use('/pickup', pickupRouter);
+app.use('/recyclables', recyclablesRouter);
 
 
 router.get('/', (req, res) => {
@@ -54,21 +57,21 @@ router.get('/signin', (req, res) => {
     res.render('signIn');
 });
 
+/*
 router.get('/mapui', (req, res) => {
   console.log(req.user);
     res.render('mapui', { user: req.user });
 });
+*/
 
 app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
 
-/*
-router.get('/pickup', (req, res) => {
-  res.render('pickup', { title: 'Pickup Requests' });
+app.get('*', function(req, res){
+  res.render('error');
 });
-*/
 
 app.listen(port, (req, res) => {
     console.log('Running ON PORT:' + port);
