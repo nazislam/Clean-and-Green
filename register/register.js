@@ -8,7 +8,7 @@ const validator = require('express-validator');
 const {check, validationResult} = require('express-validator/check');
 
 function getModel() {
-    return require('./model-datastore');
+  return require('./model-datastore');
 }
 
 registerRouter.use(bodyParser.json());
@@ -22,45 +22,52 @@ registerRouter.route('/')
   .post((req, res) => {
     req.login(req.body, () => {
       const data = req.body;
-      getModel().create(data);
+      if (data.userType === 'client') {
+        data.sentRequests = [];
+        getModel().createClient(data);
+      }
+      else {
+        data.listOfpickups = [];
+        getModel().createDriver(data);
+      }
 
       // res.redirect('/register/profile');
       res.redirect('/register/mapui');
     });
-});
+  });
 
 registerRouter.route('/signIn').post(
-    passport.authenticate('local', { session: true, 
-                // successRedirect: '/register/profile', 
-                failureRedirect: '/' }),
-    (req, res) => {
-        // res.redirect('/register/profile');
-        res.redirect('/register/mapui');
-    }
+  passport.authenticate(['local', 'local2'], { session: true, 
+    // successRedirect: '/register/profile', 
+    failureRedirect: '/signin' }),
+  (req, res) => {
+    // res.redirect('/register/profile');
+    res.redirect('/register/mapui');
+  }
 );
 
 
 registerRouter.route('/profile')
-    .all(function(req, res, next) {
-        if (!req.user) {
-            res.redirect('/');
-        }
-        next();
-    })
-    .get((req, res) => {
-        res.render('profile', { user: req.user });
-});
+  .all(function(req, res, next) {
+    if (!req.user) {
+      res.redirect('/');
+    }
+    next();
+  })
+  .get((req, res) => {
+    res.render('profile', { user: req.user });
+  });
 
 
 registerRouter.route('/mapui')
-    .all(function(req, res, next) {
-        if (!req.user) {
-            res.redirect('/');
-        }
-        next();
-    })
-    .get((req, res) => {
-        res.render('mapui', { user: req.user });
-});
+  .all(function(req, res, next) {
+    if (!req.user) {
+      res.redirect('/');
+    }
+    next();
+  })
+  .get((req, res) => {
+    res.render('mapui', { user: req.user });
+  });
 
 module.exports = registerRouter;

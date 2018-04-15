@@ -18,9 +18,6 @@ const registerRouter = require('./register/register');
 const pickupRouter = require('./pickup/pickup');
 const recyclablesRouter = require('./recyclables/recyclables');
 
-// dropoff -> pickup
-// pickup -> recyclables
-
 pickupRouter.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', router);
@@ -42,11 +39,11 @@ app.use('/recyclables', recyclablesRouter);
 
 
 router.get('/', (req, res) => {
-    res.redirect('/home');
+    res.render('home');
 });
 
 router.get('/home', (req, res) => {
-    res.render('home');
+    res.redirect('/');
 });
 
 router.get('/register', (req, res) => {
