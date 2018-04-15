@@ -33,14 +33,45 @@ function processItemAsArray(itemAsString) {
   return result;
 }
 
-function create(data) {
-    const entity = {
-        key: ds.key(kind),
+function findUser(firstName, lastName, newKey) {
+  const query = ds.createQuery('Client')
+    .filter('firstName', '=', firstName)
+    .filter('lastName', '=', lastName);
+  ds.runQuery(query).then(results => {
+    const client = results[0];
+    clients.forEach(client => {
+      const clientKey = client[ds.KEY];
+      console.log('Found Client ID:', clientKey.id);
+      ds.get(newKey).then(results => {
+        var recyclable = results[0];
+        console.log('Found entity:', recyclable);
+        ds.update(recyclable).then(() => {
+          console.log('Entity: recyclable has been updated.');
+        });
+      });
+    });
+  });
+}
+
+function create(data, email) {
+  const newKey = ds.key(kind);
+  const query = ds.createQuery('Client')
+    .filter('email', '=', email);
+  ds.runQuery(query).then(results => {
+    const clients = results[0];
+    clients.forEach(client => {
+      const clientKey = client[ds.KEY];
+      data.creatorId = clientKey.id;
+      const entity = {
+        key: newKey,
         data: toDatastore(data)
-    };
-    ds.save(entity);
+      };
+      ds.save(entity)
+        .then(() => { console.log(`Recyclable ${newKey.id} saved entity`) });
+    })
+  });
 }
 
 
 
-module.exports = { create, processItemAsArray };
+module.exports = { create, processItemAsArray, findUser };
