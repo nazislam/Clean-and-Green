@@ -3,7 +3,9 @@
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');
 const ds = Datastore({ projectId: config.get('GCLOUD_PROJECT') });
-const kind = "User";
+
+const kindClient = "Client";
+const kindDriver = "Driver";
 
 function fromDatastore (obj) {
     obj.id = obj[Datastore.KEY].id;
@@ -24,14 +26,21 @@ function toDatastore (obj) {
     return results;
 }
 
-function create(data) {
+function createClient(data) {
     const entity = {
-        key: ds.key(kind),
+        key: ds.key(kindClient),
+        data: toDatastore(data)
+    };
+    ds.save(entity);
+}
+
+function createDriver(data) {
+    const entity = {
+        key: ds.key(kindDriver),
         data: toDatastore(data)
     };
     ds.save(entity);
 }
 
 
-
-module.exports = { create };
+module.exports = { createClient, createDriver };

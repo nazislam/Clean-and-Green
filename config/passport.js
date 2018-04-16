@@ -1,6 +1,7 @@
 'use strict';
 
 const passport = require('passport');
+const st = require('./strategies/local.strategy');
 
 module.exports = function(app) {
     app.use(passport.initialize());
@@ -14,5 +15,8 @@ module.exports = function(app) {
         done(null, user);
     });
 
-    require('./strategies/local.strategy')();
+    st.l1();
+    st.l2();
+
+    // require('./strategies/local.strategy')();
 };
