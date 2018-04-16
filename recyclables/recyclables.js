@@ -1,3 +1,7 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
+
 'use strict';
 
 const express = require('express'),
@@ -21,15 +25,5 @@ recyclablesRouter
     });
   });
 
-/*
-pickupRouter.route('/')
-  .get(function(req ,res) {
-    var entries = getModel().listRequest();
-    console.log('----')
-    console.log(entries);
-    console.log('----')
-    res.render('pickup', { entries: entries, a: [1,2,3] });
-  });
-*/
 
 module.exports = recyclablesRouter;

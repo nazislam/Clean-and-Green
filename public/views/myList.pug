@@ -1,0 +1,71 @@
+extends layout
+
+block content
+    .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
+      a.navbar-brand(href='/home')
+        img(src='/css/img/recyclelogo.png', width='35', height='35', alt='GnC')
+
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          if (user.userType === 'client')
+            li.nav-item
+              a.nav-link(href='/pickup') Pick Up
+          else
+            li.nav-item
+              a.nav-link(href='/recyclables') Recyclables
+          li.nav-item
+            a.nav-link(href='/register/profile') Profile
+          li.nav-item
+            a.nav-link(href='/mapui/list') My List
+          li.nav-item
+            a.nav-link(href='/logout') Logout
+
+    h2 My List
+
+    p List of recyclables:
+
+
+
+    each entry in recyclables
+      .div(style='padding: 10px;')
+        .card(style='width: 18rem;')
+          div(class='card-header')
+            if (entry.processed) 
+              h6 Item has been processed
+            else 
+              h6 Item not processed yet
+          .card-body
+            .card-title
+              h5= entry.addressLine01
+            .card-subtitle.mb-2.text-muted
+              h6= entry.addressLine02
+            .card-text
+              h6 City: #{entry.city}
+              h6 ZIP: #{entry.zip}
+              h6 Items:
+                ul
+                  each val in entry.item
+                    li= val
+
+//-     .col-md
+//-       each entry in recyclables
+//-         ul.list-group(style='width: 18rem;')
+//-           li.list-group-item.d-flex.justify-content-between.align-items-center
+//-             ul
+//-               li= entry.addressLine01
+//-               li= entry.addressLine02
+//-               li City: #{entry.city}
+//-               li ZIP: #{entry.zip}
+//-               li Items:
+//-                 ul
+//-                   each val in entry.item
+//-                     li= val
+//-             if entry.processed === true
+//-               span.badge.badge-primary.badge-pill Processed
+
+
+
+
+

@@ -1,3 +1,7 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
+
 'use strict';
 
 const express = require('express');
@@ -69,5 +73,18 @@ registerRouter.route('/mapui')
   .get((req, res) => {
     res.render('mapui', { user: req.user });
   });
+
+registerRouter.route('/mapui/mylist')
+  .all(function(req, res, next) {
+    if (!req.user) {
+      res.redirect('/');
+    }
+    next();
+  })
+  .get((req, res) => {
+    res.render('myList', { user: req.user });
+  });
+
+
 
 module.exports = registerRouter;
