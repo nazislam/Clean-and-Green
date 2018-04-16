@@ -1,3 +1,8 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
+'use strict';
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const pickupRouter = express.Router();
@@ -23,20 +28,11 @@ pickupRouter.route('/')
   .post((req, res) => {
     const data = req.body;
     const userEmail = req.user.email;
-    const fn = req.user.firstName;
-    const ln = req.user.lastName;
     if (typeof data.item === 'string') {
       data.item = getModel().processItemAsArray(data.item);
     }
     data.processed = false;
-    // if (req.user) {
-    //   data.createdBy = req.user.firstName + ' ' + req.user.lastName;
-    // } else {
-    //   data.createdBy = 'anonymous';
-    // }
-    // data.pickedUpBy = '';
     getModel().create(data, userEmail);
-
     res.redirect('/register/mapui');
 });
 

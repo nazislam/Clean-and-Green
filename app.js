@@ -17,6 +17,8 @@ const port = process.env.PORT || config.get("PORT");
 const registerRouter = require('./register/register');
 const pickupRouter = require('./pickup/pickup');
 const recyclablesRouter = require('./recyclables/recyclables');
+const listRouter = require('./list/list');
+const mapRouter = require('./map/map');
 
 pickupRouter.use(bodyParser.urlencoded({ extended: false }));
 
@@ -36,7 +38,8 @@ require('./config/passport')(app);
 app.use('/register', registerRouter);
 app.use('/pickup', pickupRouter);
 app.use('/recyclables', recyclablesRouter);
-
+app.use('/mapui/list', listRouter);
+app.use('/register/mapui', mapRouter);
 
 router.get('/', (req, res) => {
     res.render('home');
@@ -54,22 +57,15 @@ router.get('/signin', (req, res) => {
     res.render('signIn');
 });
 
-/*
-router.get('/mapui', (req, res) => {
-  console.log(req.user);
-    res.render('mapui', { user: req.user });
-});
-*/
-
 app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
 
-app.get('*', function(req, res){
+app.get('*', function(req, res) {
   res.render('error');
 });
 
 app.listen(port, (req, res) => {
-    console.log('Running ON PORT:' + port);
+    console.log('server is running ON PORT:' + port);
 });

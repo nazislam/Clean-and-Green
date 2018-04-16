@@ -1,10 +1,12 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
 'use strict';
 
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');
 const ds = Datastore({
     projectId: config.get('GCLOUD_PROJECT')
-})
+});
 const kind = "Recyclables";
 
 function fromDatastore (obj) {
@@ -26,38 +28,7 @@ function toDatastore (obj) {
     return results;
 }
 
-function findRecyclables(userEmail) {
-  const query = ds.createQuery('Client').filter('email', '=', userEmail);
-  ds.runQuery(query).then(results => {
-    const clients = results[0];
-    clients.forEach(client => {
-      const clientKey = client[ds.KEY];
-      console.log('Client ->', clientKey.id);
-      const query02 = ds.createQuery(kind).filter('creatorId', '=', clientKey.id);
-      ds.runQuery(query02).then(results => {
-        const recyclables = results[0];
-        console.log('Found items:');
-        recyclables.forEach(recyclable => {
-          const recyclableKey = recyclable[ds.KEY];
-          console.log(recyclableKey.id);
-        });
-      });
-    });
-  });
-}
-
-function f2(userEmail, cb) {
-  const query = ds.createQuery('Client').filter('email', '=', userEmail);
-  ds.runQuery(query, (err, entities) => {
-    if (err) {
-      cb(err);
-      return;
-    }
-    cb(entities.map(fromDatastore));
-  });
-}
-
-function f3(userEmail, cb) {
+function findRecyclables(userEmail, cb) {
   const query = ds.createQuery('Client').filter('email', '=', userEmail);
   ds.runQuery(query).then(results => {
     const clients = results[0];
@@ -78,4 +49,4 @@ function f3(userEmail, cb) {
 
 
 
-module.exports = {findRecyclables, f2, f3};
+module.exports = {findRecyclables};
