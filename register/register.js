@@ -71,7 +71,8 @@ registerRouter.route('/mapui')
     next();
   })
   .get((req, res) => {
-    res.render('mapui', { user: req.user, location: {} });
+    const message = '';
+    res.render('mapui', { user: req.user, location: {}, response: message });
   });
 
 registerRouter.route('/mapui/mylist')
