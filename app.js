@@ -18,6 +18,7 @@ const registerRouter = require('./register/register');
 const pickupRouter = require('./pickup/pickup');
 const recyclablesRouter = require('./recyclables/recyclables');
 const listRouter = require('./list/list');
+const mapRouter = require('./map/map');
 
 pickupRouter.use(bodyParser.urlencoded({ extended: false }));
 
@@ -38,6 +39,7 @@ app.use('/register', registerRouter);
 app.use('/pickup', pickupRouter);
 app.use('/recyclables', recyclablesRouter);
 app.use('/mapui/list', listRouter);
+app.use('/register/mapui', mapRouter);
 
 router.get('/', (req, res) => {
     res.render('home');

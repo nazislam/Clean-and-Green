@@ -21,6 +21,23 @@ block content
             a.nav-link(href='/mapui/list') My List
           li.nav-item
             a.nav-link(href='/logout') Logout
+
+    div
+      if (location.Latitude)
+        p location latitude found
+        - v1 = location.Latitude
+        - v2 = location.Longitude
+        p= v1
+      else
+        p location not found
+        - v1 = 44.69254300000001
+        - v2 = -73.46696199999997
+        p= v1
+      form(method='POST', action='/register/mapui')
+        label(for='address') Address:
+        input(type='text', id='address', name='address') 
+        button(type='submit') Ping location
+
     .mapbox
       #map
         
@@ -36,7 +53,11 @@ block content
 
         function initMap() {
           map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: 44.69254300000001, lng: -73.46696199999997 },
+            //if (location !== undefined)
+              //center: { lat: #{location.Latitude}, lng: #{location.Longitude} },
+            //else
+            //center: { lat: 44.69254300000001, lng: -73.46696199999997 },
+              center: { lat: #{v1}, lng: #{v2} },
             zoom: 16
           });
         }
