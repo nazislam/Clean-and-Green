@@ -1,0 +1,119 @@
+extends layout
+
+block content
+    #modalPickUp.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog.modal-dialog-centered(role='document')
+        .modal-content
+          form(method='POST', action='/pickup')
+            .modal-header.text-center
+              h5#exampleModalLabel.modal-title.w-100.font-weight-bold Pick-Up Request
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+            .modal-body
+              .form-group
+                input.form-control(type='text' id='street' name='street' placeholder='Street Address')
+              .form-group
+                input.form-control(type='text' id='city' name='city' placeholder='City')
+              .form-group
+                input.form-control(type='text' id='state' name='state' placeholder='State')
+              .form-group
+                input.form-control(type='text' id='zip' name='zip' placeholder='Zip-Code')
+              h5 I'm recycling:
+              .form-check.form-check-inline
+                input.form-check-input(id='checkboxGlass', type='checkbox', name='item', value='glass')
+                label.form-check-label(for='checkboxGlass') Glass
+              .form-check.form-check-inline
+                input.form-check-input(id='checkboxCans', type='checkbox' name='item' value='cans')
+                label.form-check-label(for='checkboxCans') Cans
+              .form-check.form-check-inline
+                input.form-check-input(type='checkbox' id='checkboxPaper' name='item' value='paper')
+                label.form-check-label(for='checkboxPaper') Paper
+              .form-check.form-check-inline
+                input.form-check-input(type='checkbox' id='checkboxCartons' name='item' value='cartons')
+                label.form-check-label(for='checkboxCartons') Cartons
+              .form-check.form-check-inline
+                input.form-check-input(type='checkbox' id='checkboxPlastic' name='plastic' value='plastic')
+                label.form-check-label(for='checkboxPlastic') Plastic
+              br
+              h5 How many bags are you recycling?
+              .form-check.form-check-inline
+                input.form-check-input(type='radio', id="container1", name='container', value='1')
+                label.form-check-label(for='container1') 1
+              .form-check.form-check-inline
+                input.form-check-input(type='radio', id="container2", name='container', value='2')
+                label.form-check-label(for='container2') 2
+              .form-check.form-check-inline
+                input.form-check-input(type='radio', id="container3", name='container', value='3')
+                label.form-check-label(for='container3') 3
+            .modal-footer.d-flex.justify-content-center
+              button.btn.btn-success(type='submit') Submit    
+
+
+
+    .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
+      a.navbar-brand(href='/home')
+        img(src='/css/img/recyclelogo.png', width='35', height='35', alt='GnC')
+
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item
+            a.nav-link(href='/pickup', data-toggle='modal', data-target='#modalPickUp') Pick Up
+          li.nav-item
+            a.nav-link(href='/register/profile') Profile
+          li.nav-item
+            a.nav-link(href='/mapui/list') My List
+          li.nav-item
+            a.nav-link(href='/logout') Logout
+
+    div
+      if (location.latitude && location.longitude)
+        - latitude = location.latitude
+        - longitude = location.longitude
+      else
+        - latitude = 44.69254300000001
+        - longitude = -73.46696199999997
+      form(method='POST', action='/register/mapui')
+        label(for='address') Address:
+        input(type='text', id='address', name='address') 
+        button(type='submit') Ping location
+
+        // can be formatted nicely
+        span(style='color:red')= response 
+
+    .mapbox
+      #map
+        
+      script.
+        var map;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: #{latitude}, lng: #{longitude} },
+            zoom: 15
+          });
+        
+          marker = new google.maps.Marker({
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position: {lat: 44.696895, lng: -73.467460}
+          });
+          marker2 = new google.maps.Marker({
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position: {lat: 44.697805, lng: -73.468736}
+          });
+          marker.addListener('click', toggleBounce);}
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+            marker2.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            marker2.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
+        
+      script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')

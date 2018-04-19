@@ -6,55 +6,56 @@ block content
   #modalRegisterForm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
     .modal-dialog.modal-dialog-centered(role='document')
       .modal-content
-        .modal-header.text-center
-          h5#exampleModalLabel.modal-title.w-100.font-weight-bold Registration
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
-        .modal-body
-          form(method='POST')
+        form(method='POST', id='addUserForm', action='/register')
+          .modal-header.text-center
+            h5#exampleModalLabel.modal-title.w-100.font-weight-bold Registration
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
             .form-group
               input.form-control(type='text' name='firstName' placeholder="First Name")
             .form-group
               input.form-control(type='text' name='lastName' placeholder="Last Name")
             .form-group
-              input#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email')
+              input#exampleInputEmail1.form-control(type='email', name='email', aria-describedby='emailHelp', placeholder='Enter email')
             .form-group
-              input#exampleInputPassword1.form-control(type='password', placeholder='Password')
+              input#exampleInputPassword1.form-control(type='password', name='password', placeholder='Password')
             h4 I want to:
             .form-check.form-check-inline
-              input#option1.form-check-input(type='radio', name='userType', value='client')
-              label.form-check-label(for='inlineRadio1') Recycle
+              input#radioClient.form-check-input(type='radio', name='userType', value='client')
+              label.form-check-label(for='radioClient') Recycle
             .form-check.form-check-inline
-              input#option2.form-check-input(type='radio', name='userType', value='driver')
-              label.form-check-label(for='inlineRadio1') Pick up recycling
-        .modal-footer.d-flex.justify-content-center
-          button.btn.btn-success(type='button', data-dismiss='modal') Close
-          button.btn.btn-success(type='submit', data-dismiss='modal') Register
+              input#radioDriver.form-check-input(type='radio', name='userType', value='driver')
+              label.form-check-label(for='radioDriver') Pick up recycling
+
+          .modal-footer.d-flex.justify-content-center
+            button.btn.btn-success(type='submit') Submit
+            button.btn.btn-success(type='button', data-dismiss='modal') Close
+
 
   #modalSignInForm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
     .modal-dialog.modal-dialog-centered(role='document')
       .modal-content
-        .modal-header.text-center
-          h5#exampleModalLabel.modal-title.w-100.font-weight-bold Login
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
-        .modal-body
-          form(action='register/signIn' method='POST')
+        form(action='register/signIn' method='POST')
+          .modal-header.text-center
+            h5#exampleModalLabel.modal-title.w-100.font-weight-bold Login
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
             .form-group
               input#exampleInputEmail1.form-control(type='email' name='email' placeholder="E-mail")
             .form-group
               input#exampleInputPassword1.form-control(type='password' name='password' placeholder="Password")
-        .modal-footer.d-flex.justify-content-center
-          button.btn.btn-success(type='button', data-dismiss='modal') Close
-          button.btn.btn-success(type='submit') Login
+          .modal-footer.d-flex.justify-content-center
+            button.btn.btn-success(type='button', data-dismiss='modal') Close
+            button.btn.btn-success(type='submit') Login
 
   .container-fluid.cover-home
     .caption-home
       h1.display-3 Clean and Green
       p#pcaption  Recycling Made Easy
-      a.btn.btn-success.btn-lg.bottons(href="", data-toggle="modal", data-target="#modalRegisterForm") Register
+      a.btn.btn-success.btn-lg.bottons(id='lalala', href="", data-toggle="modal", data-target="#modalRegisterForm") Register
       a.btn.btn-success.btn-lg.bottons(href="", data-toggle="modal", data-target="#modalSignInForm") Login
-      a.btn-success.btn.bottons(href='/register/mapui') Map
   .container.how-box
     .row
       .col.how-it-works

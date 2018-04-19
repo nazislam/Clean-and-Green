@@ -24,15 +24,18 @@ registerRouter.route('/')
     res.render('../views/register');
   })
   .post((req, res) => {
+    console.log(req.body);
     req.login(req.body, () => {
       const data = req.body;
       if (data.userType === 'client') {
         data.sentRequests = [];
         getModel().createClient(data);
+        res.redirect('/register/clientUI');
       }
       else {
         data.listOfpickups = [];
         getModel().createDriver(data);
+        res.redirect('/register/driverUI');
       }
 
       // res.redirect('/register/profile');
@@ -43,7 +46,7 @@ registerRouter.route('/')
 registerRouter.route('/signIn').post(
   passport.authenticate(['local', 'local2'], { session: true, 
     // successRedirect: '/register/profile', 
-    failureRedirect: '/signin' }),
+    failureRedirect: '/' }),
   (req, res) => {
     // res.redirect('/register/profile');
     res.redirect('/register/mapui');
@@ -63,7 +66,7 @@ registerRouter.route('/profile')
   });
 
 
-registerRouter.route('/mapui')
+registerRouter.route('/clientUI')
   .all(function(req, res, next) {
     if (!req.user) {
       res.redirect('/');
@@ -72,7 +75,7 @@ registerRouter.route('/mapui')
   })
   .get((req, res) => {
     const message = '';
-    res.render('mapui', { user: req.user, location: {}, response: message });
+    res.render('clientUI', { user: req.user, location: {}, response: message });
   });
 
 registerRouter.route('/mapui/mylist')
