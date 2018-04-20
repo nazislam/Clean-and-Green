@@ -1,3 +1,7 @@
+/* jshint esversion: 6 */
+/* jshint node: true */
+
+
 'use strict';
 
 const passport = require('passport');
@@ -5,7 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const Datastore = require('@google-cloud/datastore');
 const ds = Datastore({
   projectId: 'clean-and-green'
-})
+});
 
 function getModel() {
   return require('../../datastore/model-datastore');

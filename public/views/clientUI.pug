@@ -105,14 +105,12 @@ block content
             animation: google.maps.Animation.DROP,
             position: {lat: 44.697805, lng: -73.468736}
           });
-          marker.addListener('click', toggleBounce);}
-        function toggleBounce() {
+          marker.addListener('click', toggleBounce1);}
+        function toggleBounce1() {
           if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
-            marker2.setAnimation(null);
           } else {
             marker.setAnimation(google.maps.Animation.BOUNCE);
-            marker2.setAnimation(google.maps.Animation.BOUNCE);
           }
         }
         
