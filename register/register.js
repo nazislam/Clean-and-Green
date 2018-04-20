@@ -24,7 +24,6 @@ registerRouter.route('/')
     res.render('../views/register');
   })
   .post((req, res) => {
-    console.log(req.body);
     req.login(req.body, () => {
       const data = req.body;
       if (data.userType === 'client') {
@@ -38,8 +37,6 @@ registerRouter.route('/')
         res.redirect('/register/driverUI');
       }
 
-      // res.redirect('/register/profile');
-      res.redirect('/register/mapui');
     });
   });
 
@@ -49,7 +46,11 @@ registerRouter.route('/signIn').post(
     failureRedirect: '/' }),
   (req, res) => {
     // res.redirect('/register/profile');
-    res.redirect('/register/mapui');
+    console.log(req.user);
+    if (req.user.userType === 'client')
+      res.redirect('/register/clientUI');
+    else
+      res.redirect('/register/driverUI');
   }
 );
 
@@ -76,6 +77,19 @@ registerRouter.route('/clientUI')
   .get((req, res) => {
     const message = '';
     res.render('clientUI', { user: req.user, location: {}, response: message });
+  });
+
+
+registerRouter.route('/driverUI')
+  .all(function(req, res, next) {
+    if (!req.user) {
+      res.redirect('/');
+    }
+    next();
+  })
+  .get((req, res) => {
+    const message = '';
+    res.render('driverUI', { user: req.user, location: {}, response: message });
   });
 
 registerRouter.route('/mapui/mylist')

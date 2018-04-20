@@ -33,7 +33,7 @@ pickupRouter.route('/')
     }
     data.processed = false;
     getModel().create(data, userEmail);
-    res.redirect('/register/mapui');
+    res.redirect('/register/clientUI');
 });
 
 module.exports = pickupRouter;
