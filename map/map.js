@@ -35,12 +35,18 @@ mapRouter.route('/')
              console.log(resultObj);
              var addressFound = true;
              clearInterval(requestLoop);
-             res.render('mapui', { user: req.user, location: resultObj, response: message });
+             if (req.user.userType === 'client')
+               res.render('clientUI', { user: req.user, location: resultObj, response: message });
+             else
+               res.render('driverUI', { user: req.user, location: resultObj, response: message });
            }
            if (requestCounter === 10) {
              clearInterval(requestLoop);
              const message = 'Please try again';
-             res.render('mapui', { user: req.user, location: resultObj, response: message });
+             if (req.user.userType === 'client')
+               res.render('clientUI', { user: req.user, location: resultObj, response: message });
+             else
+               res.render('driverUI', { user: req.user, location: resultObj, response: message });
            }
         }
       );
