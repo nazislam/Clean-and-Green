@@ -63,7 +63,10 @@ registerRouter.route('/profile')
     next();
   })
   .get((req, res) => {
-    res.render('profile', { user: req.user });
+    if (req.user.userType === 'client')
+      res.render('clientProfile', { user: req.user });
+    else
+      res.render('driverProfile', { user: req.user });
   });
 
 

@@ -33,10 +33,5 @@ block content
                   tr
                     td #[b Password:]
                     td= user.password
-              if (user.userType === 'client')
-                a.btn.btn-primary.mx-2(href='/pickup') Pick Up
-              else
-                a.btn.btn-primary.mx-2(href='/recyclables') Recyclables
-              
-              a.btn.btn-primary.mx-2(href='/register/mapui') Map UI
+              a.btn.btn-primary.mx-2(href='/register/clientUI') Map UI
               a.btn.btn-primary.mx-2(href='/logout') Logout
