@@ -10,18 +10,16 @@ html
         .card(style='width: 18rem;')
           .card-body
             .card-title
-              h5= entry.addressLine01
+              h5= entry.street
             .card-subtitle.mb-2.text-muted
-              h6= entry.addressLine02
+              h6= entry.city
             .card-text
-              h6 City: #{entry.city}
+              h6 City: #{entry.state}
               h6 ZIP: #{entry.zip}
               h6 Items:
                 ul
                   each val in entry.item
                     li= val
-              p 
-                i.text-muted created by #{entry.createdBy}
             a.card-link.btn.btn-sm.btn-primary(href='#') Pick Up
             a.card-link.btn.btn-sm.btn-primary(href=`/entries/${entry.id}`) Details
 
