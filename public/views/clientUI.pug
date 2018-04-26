@@ -68,12 +68,25 @@ block content
             a.nav-link(href='/logout') Logout
 
     div
+      - var myLatLng1 = {lat: -25.363, lng: 131.044}
+      - var myLatLng2 = {lat: 44.697805, lng: -73.468736}
+      - var myLatLng3 = {lat: 44.697805, lng: -73.469323}
+      - var LatLngList = []
+      - LatLngList.push(myLatLng1)
+      - LatLngList.push(myLatLng2)
+      - LatLngList.push(myLatLng3)
+
       if (location.latitude && location.longitude)
         - latitude = location.latitude
         - longitude = location.longitude
       else
         - latitude = 44.69254300000001
         - longitude = -73.46696199999997
+      div
+        p hello world!
+        ul
+          each val in LatLngList
+            li #{val.lat} -- #{val.lng}
       form(method='POST', action='/register/mapui')
         label(for='address') Address:
         input(type='text', id='address', name='address') 
@@ -94,14 +107,11 @@ block content
         
           // marker = new google.maps.Marker({
           //   map: map,
-          //   draggable: true,
-          //   animation: google.maps.Animation.DROP,
           //   position: {lat: latitude, lng: longitude}
           // });
 
           marker = new google.maps.Marker({
             map: map,
-            title: 'title',
             position: {lat: 44.696895, lng: -73.467460}
           });
 
