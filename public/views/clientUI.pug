@@ -99,40 +99,60 @@ block content
       #map
         
       script.
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: #{latitude}, lng: #{longitude} },
-            zoom: 15
-          });
         
-          // marker = new google.maps.Marker({
-          //   map: map,
-          //   position: {lat: latitude, lng: longitude}
-          // });
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('map'), 
+            {
+              zoom: 15,
+              center: { lat: #{latitude}, lng: #{longitude} }
+            }
+          );
 
-          marker = new google.maps.Marker({
-            map: map,
-            position: {lat: 44.696895, lng: -73.467460}
-          });
+          // list of markers
+          var markers = [
+            {
+              coords: {lat: 44.697805, lng: -73.468736},
+              content: '<p><strong>12 Wells St.</strong></p>'
+            },
+            {
+              coords: {lat: 44.696895, lng: -73.467460},
+              content: '<p><strong>12 Hellen St.</strong></p>'
+            },
+            {
+              coords: {lat: 44.697805, lng: -73.469323},
+              content: '<p><strong>8 Charles St.</strong></p>'
+            }
+          ];
 
-          // marker2 = new google.maps.Marker({
-          //   map: map,
-          //   position: {lat: 44.697805, lng: -73.468736}
-          // });
+          // Loop through markers
+          for (var i = 0; i < markers.length; i++) {
+            addMarker(markers[i]); 
+          }
+          function addMarker(props) {
+            var marker = new google.maps.Marker({
+              position: props.coords,
+              map: map
+            });
 
-          // marker3 = new google.maps.Marker({
-          //   map: map,
-          //   position: {lat: 44.697805, lng: -73.469323}
-          // });
-
-          marker.addListener('click', toggleBounce);}
-
-          function toggleBounce() {
-            if (marker.getAnimation() !== null) {
-              marker.setAnimation(null);
-            } else {
-              marker.setAnimation(google.maps.Animation.BOUNCE);
+            // Check content
+            if (props.content) {
+              var infoWindow = new google.maps.InfoWindow({content: props.content}); 
+              marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+              });
             }
           }
+        }
+
+
+        /* >>> function for make markers bounce
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
+        */
         
       script(async defer, src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')
