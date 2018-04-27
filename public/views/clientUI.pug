@@ -76,41 +76,20 @@ block content
       else
         - latitude = 44.69254300000001
         - longitude = -73.46696199999997
-      div
-        p hello world!
-        ul
-          each val in rr
-            li #{val.latitude} -- #{val.longitude}
-      form(method='POST', action='/register/mapui')
-        label(for='address') Address:
-        input(type='text', id='address', name='address') 
-        button(type='submit') Ping location
+      
+      // form(method='POST', action='/register/mapui')
+      //   label(for='address') Address:
+      //   input(type='text', id='address', name='address') 
+      //   button(type='submit') Ping location
 
-        // can be formatted nicely
-        span(style='color:red')= response 
+      //   // can be formatted nicely
+      //   span(style='color:red')= response 
 
     .mapbox
       #map
         
       script.
         var x = !{JSON.stringify(recyclables)}
-        console.log('length of x is', x.length)
-        console.log(x)
-        console.log('---------')
-        console.log(x[0].latitude)
-        console.log(x[0].longitude)
-        console.log('---------')
-        console.log( #{r1lat} );
-        console.log( #{r1lng} );
-        console.log( #{r2lat} );
-        console.log( #{r2lng} );
-        function stripObject(myArray) {
-          var result = [];
-          for (var i = 0; i < myArray.length; i++) {
-            result.push({ lat: myArray[i]['latitude'], lng: myArray[i]['longitude'] });
-          }
-          return result;
-        }
         
         function initMap() {
           var map = new google.maps.Map(document.getElementById('map'), 
@@ -121,29 +100,20 @@ block content
           );
 
           // list of markers
-          var markers = [
-            {
-              coords: {lat: 44.697805, lng: -73.469323},
-              content: '<p><strong>8 Charles St.</strong></p>'
-            }
-          ];
-          var markers2 = [
-            {lat: 44.697805, lng: -73.469323}
-          ];
-          var markers3 = []
+          var markers = []
           for (var i = 0; i < x.length; i++) {
             var loc = {};
             loc.coords = {};
             loc.coords.lat = x[i].latitude;
             loc.coords.lng = x[i].longitude;
-            loc.content = x[i].street + ', ' + x[i].city + ', ' + x[i].state ;
-            markers3.push(loc);
+            loc.content = x[i].street + ', ' + x[i].city + ', ' + x[i].state;
+            markers.push(loc);
           }
-          console.log(markers3);
+          console.log(markers);
 
           // Loop through markers
           for (var i = 0; i < x.length; i++) {
-            addMarker( markers3[i] ); 
+            addMarker( markers[i] ); 
           }
 
           function addMarker(props) {
@@ -165,7 +135,7 @@ block content
         }
 
 
-        /* >>> function for make markers bounce
+        // >>> function for make markers bounce
         function toggleBounce() {
           if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
@@ -173,6 +143,5 @@ block content
             marker.setAnimation(google.maps.Animation.BOUNCE);
           }
         }
-        */
         
       script(async defer, src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')

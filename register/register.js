@@ -83,7 +83,6 @@ registerRouter.route('/clientUI')
     const user = req.user;
     const message = '';
     getModel().findRecyclables(user.email, (entities) => {
-      console.log('lalala');
       res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: entities });
     });
     // res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: {} });
