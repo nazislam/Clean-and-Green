@@ -27,7 +27,6 @@ mapRouter.route('/')
              requestCounter++;
              console.log(requestCounter);
            if (body.results[0] !== undefined && requestCounter >= 1) {
-             console.log(typeof body.results);
              const message = '';
              resultObj.formattedAddress = body.results[0].formatted_address;
              resultObj.latitude = body.results[0].geometry.location.lat;
