@@ -70,6 +70,8 @@ registerRouter.route('/profile')
   });
 
 
+// this function needs to be updated to fetch the addresses
+// from database and show on map.
 registerRouter.route('/clientUI')
   .all(function(req, res, next) {
     if (!req.user) {
@@ -78,8 +80,13 @@ registerRouter.route('/clientUI')
     next();
   })
   .get((req, res) => {
+    const user = req.user;
     const message = '';
-    res.render('clientUI', { user: req.user, location: {}, response: message });
+    getModel().findRecyclables(user.email, (entities) => {
+      console.log('lalala');
+      res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: entities });
+    });
+    // res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: {} });
   });
 
 
@@ -92,7 +99,7 @@ registerRouter.route('/driverUI')
   })
   .get((req, res) => {
     const message = '';
-    res.render('driverUI', { user: req.user, location: {}, response: message });
+    res.render('driverUI', { user: req.user, location: {}, response: message, recyclables: {} });
   });
 
 registerRouter.route('/mapui/mylist')

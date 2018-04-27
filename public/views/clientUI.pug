@@ -68,13 +68,7 @@ block content
             a.nav-link(href='/logout') Logout
 
     div
-      - var myLatLng1 = {lat: -25.363, lng: 131.044}
-      - var myLatLng2 = {lat: 44.697805, lng: -73.468736}
-      - var myLatLng3 = {lat: 44.697805, lng: -73.469323}
-      - var LatLngList = []
-      - LatLngList.push(myLatLng1)
-      - LatLngList.push(myLatLng2)
-      - LatLngList.push(myLatLng3)
+      - var rr = recyclables
 
       if (location.latitude && location.longitude)
         - latitude = location.latitude
@@ -85,8 +79,8 @@ block content
       div
         p hello world!
         ul
-          each val in LatLngList
-            li #{val.lat} -- #{val.lng}
+          each val in rr
+            li #{val.latitude} -- #{val.longitude}
       form(method='POST', action='/register/mapui')
         label(for='address') Address:
         input(type='text', id='address', name='address') 
@@ -99,6 +93,24 @@ block content
       #map
         
       script.
+        var x = !{JSON.stringify(recyclables)}
+        console.log('length of x is', x.length)
+        console.log(x)
+        console.log('---------')
+        console.log(x[0].latitude)
+        console.log(x[0].longitude)
+        console.log('---------')
+        console.log( #{r1lat} );
+        console.log( #{r1lng} );
+        console.log( #{r2lat} );
+        console.log( #{r2lng} );
+        function stripObject(myArray) {
+          var result = [];
+          for (var i = 0; i < myArray.length; i++) {
+            result.push({ lat: myArray[i]['latitude'], lng: myArray[i]['longitude'] });
+          }
+          return result;
+        }
         
         function initMap() {
           var map = new google.maps.Map(document.getElementById('map'), 
@@ -111,23 +123,29 @@ block content
           // list of markers
           var markers = [
             {
-              coords: {lat: 44.697805, lng: -73.468736},
-              content: '<p><strong>12 Wells St.</strong></p>'
-            },
-            {
-              coords: {lat: 44.696895, lng: -73.467460},
-              content: '<p><strong>12 Hellen St.</strong></p>'
-            },
-            {
               coords: {lat: 44.697805, lng: -73.469323},
               content: '<p><strong>8 Charles St.</strong></p>'
             }
           ];
+          var markers2 = [
+            {lat: 44.697805, lng: -73.469323}
+          ];
+          var markers3 = []
+          for (var i = 0; i < x.length; i++) {
+            var loc = {};
+            loc.coords = {};
+            loc.coords.lat = x[i].latitude;
+            loc.coords.lng = x[i].longitude;
+            loc.content = x[i].street + ', ' + x[i].city + ', ' + x[i].state ;
+            markers3.push(loc);
+          }
+          console.log(markers3);
 
           // Loop through markers
-          for (var i = 0; i < markers.length; i++) {
-            addMarker(markers[i]); 
+          for (var i = 0; i < x.length; i++) {
+            addMarker( markers3[i] ); 
           }
+
           function addMarker(props) {
             var marker = new google.maps.Marker({
               position: props.coords,
@@ -141,7 +159,9 @@ block content
                 infoWindow.open(map, marker);
               });
             }
+
           }
+
         }
 
 
