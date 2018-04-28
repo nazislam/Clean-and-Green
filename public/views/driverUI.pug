@@ -11,6 +11,8 @@ block content
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
+            button.btn.btn-outline-success Howdy! #{user.firstName}
+          li.nav-item
             a.nav-link(href='/register/profile') Profile
           li.nav-item
             a.nav-link(href='/logout') Logout
@@ -18,13 +20,16 @@ block content
     div(class='container-fluid')
       div(class='row')
         div(class='col-3')
-          form(method='POST', action='/process')
-            select(name='address')
-              each val in recyclables
-                if val.processed === false
-                  option(value=val.street)= val.street
-            br
-            input(type='submit')
+          if (recyclables.length === 0)
+            p There is no pending order
+          else
+            form(method='POST', action='/process')
+              select(name='address')
+                each val in recyclables
+                  if val.processed === false
+                    option(value=val.street)= val.street
+              br
+              input(type='submit')
 
         div(class='col-9')
           .mapbox
