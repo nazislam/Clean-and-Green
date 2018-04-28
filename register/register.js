@@ -29,12 +29,14 @@ registerRouter.route('/')
       if (data.userType === 'client') {
         data.sentRequests = [];
         getModel().createClient(data);
-        res.redirect('/register/clientUI');
+        res.redirect('/');
+        // res.redirect('/register/clientUI');
       }
       else {
         data.listOfpickups = [];
         getModel().createDriver(data);
-        res.redirect('/register/driverUI');
+        res.redirect('/');
+        // res.redirect('/register/driverUI');
       }
 
     });
@@ -47,8 +49,9 @@ registerRouter.route('/signIn').post(
   (req, res) => {
     // res.redirect('/register/profile');
     console.log(req.user);
-    if (req.user.userType === 'client')
+    if (req.user.userType === 'client') {
       res.redirect('/register/clientUI');
+    }
     else
       res.redirect('/register/driverUI');
   }
@@ -83,7 +86,7 @@ registerRouter.route('/clientUI')
     const user = req.user;
     const message = '';
     getModel().findRecyclables(user.email, (entities) => {
-      res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: entities });
+      res.render('clientUI', { user: req.user, location: {}, recyclables: entities });
     });
     // res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: {} });
   });

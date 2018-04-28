@@ -63,27 +63,7 @@ block content
           li.nav-item
             a.nav-link(href='/register/profile') Profile
           li.nav-item
-            a.nav-link(href='/mapui/list') My List
-          li.nav-item
             a.nav-link(href='/logout') Logout
-
-    div
-      - var rr = recyclables
-
-      if (location.latitude && location.longitude)
-        - latitude = location.latitude
-        - longitude = location.longitude
-      else
-        - latitude = 44.69254300000001
-        - longitude = -73.46696199999997
-      
-      // form(method='POST', action='/register/mapui')
-      //   label(for='address') Address:
-      //   input(type='text', id='address', name='address') 
-      //   button(type='submit') Ping location
-
-      //   // can be formatted nicely
-      //   span(style='color:red')= response 
 
     .mapbox
       #map
@@ -95,7 +75,7 @@ block content
           var map = new google.maps.Map(document.getElementById('map'), 
             {
               zoom: 15,
-              center: { lat: #{latitude}, lng: #{longitude} }
+              center: { lat: 44.69254300000001, lng: -73.46696199999997 }
             }
           );
 
@@ -106,7 +86,7 @@ block content
             loc.coords = {};
             loc.coords.lat = x[i].latitude;
             loc.coords.lng = x[i].longitude;
-            loc.content = x[i].street + ', ' + x[i].city + ', ' + x[i].state;
+            loc.content = '<strong>'+ x[i].street + '</strong><br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
             markers.push(loc);
           }
           console.log(markers);
@@ -119,6 +99,7 @@ block content
           function addMarker(props) {
             var marker = new google.maps.Marker({
               position: props.coords,
+              animation: google.maps.Animation.DROP,
               map: map
             });
 
@@ -144,4 +125,4 @@ block content
           }
         }
         
-      script(async defer, src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')
+      script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')
