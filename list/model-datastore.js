@@ -1,6 +1,8 @@
 /* jshint esversion: 6 */
 /* jshint node: true */
+
 'use strict';
+
 
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');

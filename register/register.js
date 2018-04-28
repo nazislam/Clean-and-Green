@@ -29,12 +29,14 @@ registerRouter.route('/')
       if (data.userType === 'client') {
         data.sentRequests = [];
         getModel().createClient(data);
-        res.redirect('/register/clientUI');
+        res.redirect('/');
+        // res.redirect('/register/clientUI');
       }
       else {
         data.listOfpickups = [];
         getModel().createDriver(data);
-        res.redirect('/register/driverUI');
+        res.redirect('/');
+        // res.redirect('/register/driverUI');
       }
 
     });
@@ -47,8 +49,9 @@ registerRouter.route('/signIn').post(
   (req, res) => {
     // res.redirect('/register/profile');
     console.log(req.user);
-    if (req.user.userType === 'client')
+    if (req.user.userType === 'client') {
       res.redirect('/register/clientUI');
+    }
     else
       res.redirect('/register/driverUI');
   }
@@ -70,6 +73,8 @@ registerRouter.route('/profile')
   });
 
 
+// this function needs to be updated to fetch the addresses
+// from database and show on map.
 registerRouter.route('/clientUI')
   .all(function(req, res, next) {
     if (!req.user) {
@@ -78,8 +83,12 @@ registerRouter.route('/clientUI')
     next();
   })
   .get((req, res) => {
+    const user = req.user;
     const message = '';
-    res.render('clientUI', { user: req.user, location: {}, response: message });
+    getModel().findRecyclables(user.email, (entities) => {
+      res.render('clientUI', { user: req.user, location: {}, recyclables: entities });
+    });
+    // res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: {} });
   });
 
 
@@ -92,7 +101,7 @@ registerRouter.route('/driverUI')
   })
   .get((req, res) => {
     const message = '';
-    res.render('driverUI', { user: req.user, location: {}, response: message });
+    res.render('driverUI', { user: req.user, location: {}, response: message, recyclables: {} });
   });
 
 registerRouter.route('/mapui/mylist')

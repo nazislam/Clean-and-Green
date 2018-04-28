@@ -5,6 +5,7 @@
 
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');
+const request = require('request');
 const ds = Datastore({
     projectId: config.get('GCLOUD_PROJECT')
 });
@@ -36,42 +37,72 @@ function processItemAsArray(itemAsString) {
   return result;
 }
 
-// function findUser(firstName, lastName, newKey) {
-//   const query = ds.createQuery('Client')
-//     .filter('firstName', '=', firstName)
-//     .filter('lastName', '=', lastName);
-//   ds.runQuery(query).then(results => {
-//     const client = results[0];
-//     clients.forEach(client => {
-//       const clientKey = client[ds.KEY];
-//       console.log('Found Client ID:', clientKey.id);
-//       ds.get(newKey).then(results => {
-//         var recyclable = results[0];
-//         console.log('Found entity:', recyclable);
-//         ds.update(recyclable).then(() => {
-//           console.log('Entity: recyclable has been updated.');
-//         });
-//       });
-//     });
-//   });
-// }
+function generateAddress(data) {
+  var address = '';
+  for (var prop in data) {
+    address = address + data[prop];
+    address = address + ', ';
+  }
+  return address;
+}
 
 function create(data, email) {
-  const newKey = ds.key(kind);
-  const query = ds.createQuery('Client')
-    .filter('email', '=', email);
-  ds.runQuery(query).then(results => {
-    const clients = results[0];
-    clients.forEach(client => {
-      const clientKey = client[ds.KEY];
-      data.creatorId = clientKey.id;
-      const entity = {
-        key: newKey,
-        data: toDatastore(data)
-      };
-      ds.save(entity);
-    });
-  });
+  var rawAddress = {
+    street: data.street,
+    city: data.city,
+    state: data.state,
+    zip: data.zip
+  };
+  var inputAddress = generateAddress(rawAddress);
+  console.log(inputAddress);
+  const encodedAddress = encodeURIComponent(inputAddress);
+  console.log(encodedAddress);
+  
+
+  // For getting latitude and longitude
+  var requestCounter = 0;
+  var requestLoop = setInterval(function(){
+    request({
+      url: `http://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
+      json: true
+    }, (error, response, body) => {
+            requestCounter++;
+            console.log(requestCounter);
+          if (body.results[0] !== undefined && requestCounter >= 1 && !data.latitude) {
+            const message = '';
+            data.latitude = body.results[0].geometry.location.lat;
+            console.log(data.latitude);
+            data.longitude = body.results[0].geometry.location.lng;
+            console.log(data.longitude);
+            var addressFound = true;
+
+            clearInterval(requestLoop);
+
+            const newKey = ds.key(kind);
+            const query = ds.createQuery('Client')
+              .filter('email', '=', email);
+            ds.runQuery(query).then(results => {
+              const clients = results[0];
+              clients.forEach(client => {
+                const clientKey = client[ds.KEY];
+                data.creatorId = clientKey.id;
+                const entity = {
+                  key: newKey,
+                  data: toDatastore(data)
+                };
+                ds.save(entity);
+              });
+            });
+
+          }
+          if (requestCounter === 10) {
+            clearInterval(requestLoop);
+          }
+      }
+    );
+  }, 500);
+
+
 }
 
 

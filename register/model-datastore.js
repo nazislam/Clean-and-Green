@@ -30,6 +30,25 @@ function toDatastore (obj) {
     return results;
 }
 
+function findRecyclables(userEmail, cb) {
+  const query = ds.createQuery('Client').filter('email', '=', userEmail);
+  ds.runQuery(query).then(results => {
+    const clients = results[0];
+    clients.forEach(client => {
+      const clientKey = client[ds.KEY];
+      const clientId = clientKey.id;
+      const query02 = ds.createQuery('Recyclables').filter('creatorId', '=', clientId);
+      ds.runQuery(query02, (err, entities) => {
+        if (err) {
+          cb(err);
+          return;
+        }
+        cb(entities.map(fromDatastore));
+      });
+    });
+  });
+}
+
 function createClient(data) {
     const entity = {
         key: ds.key(kindClient),
@@ -47,4 +66,4 @@ function createDriver(data) {
 }
 
 
-module.exports = { createClient, createDriver };
+module.exports = { createClient, createDriver, findRecyclables };
