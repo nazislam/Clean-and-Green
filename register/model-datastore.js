@@ -43,9 +43,20 @@ function findRecyclables(userEmail, cb) {
           cb(err);
           return;
         }
-        cb(entities.map(fromDatastore));
+        cb(null, entities.map(fromDatastore));
       });
     });
+  });
+}
+
+function listRecyclables(cb) {
+  const query = ds.createQuery('Recyclables');
+  ds.runQuery(query, (err, entities) => {
+    if (err) {
+      cb(err);
+      return;
+    }
+    cb(null, entities.map(fromDatastore));
   });
 }
 
@@ -66,4 +77,4 @@ function createDriver(data) {
 }
 
 
-module.exports = { createClient, createDriver, findRecyclables };
+module.exports = { createClient, createDriver, findRecyclables, listRecyclables };

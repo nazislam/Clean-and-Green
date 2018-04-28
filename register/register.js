@@ -30,13 +30,11 @@ registerRouter.route('/')
         data.sentRequests = [];
         getModel().createClient(data);
         res.redirect('/');
-        // res.redirect('/register/clientUI');
       }
       else {
         data.listOfpickups = [];
         getModel().createDriver(data);
         res.redirect('/');
-        // res.redirect('/register/driverUI');
       }
 
     });
@@ -73,8 +71,6 @@ registerRouter.route('/profile')
   });
 
 
-// this function needs to be updated to fetch the addresses
-// from database and show on map.
 registerRouter.route('/clientUI')
   .all(function(req, res, next) {
     if (!req.user) {
@@ -82,10 +78,13 @@ registerRouter.route('/clientUI')
     }
     next();
   })
-  .get((req, res) => {
+  .get((req, res, next) => {
     const user = req.user;
-    const message = '';
-    getModel().findRecyclables(user.email, (entities) => {
+    getModel().findRecyclables(user.email, (err, entities) => {
+      if (err) {
+        next(err);
+        return;
+      }
       res.render('clientUI', { user: req.user, location: {}, recyclables: entities });
     });
     // res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: {} });
@@ -100,8 +99,14 @@ registerRouter.route('/driverUI')
     next();
   })
   .get((req, res) => {
-    const message = '';
-    res.render('driverUI', { user: req.user, location: {}, response: message, recyclables: {} });
+    const user = req.user;
+    getModel().listRecyclables((err, entities) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.render('driverUI', { user: req.user, location: {}, recyclables: entities });
+    });
   });
 
 registerRouter.route('/mapui/mylist')
