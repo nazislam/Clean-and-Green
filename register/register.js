@@ -10,6 +10,9 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const validator = require('express-validator');
 const {check, validationResult} = require('express-validator/check');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('express-flash');
 
 function getModel() {
   return require('./model-datastore');
@@ -18,6 +21,13 @@ function getModel() {
 registerRouter.use(bodyParser.json());
 registerRouter.use(bodyParser.urlencoded({ extended: false }));
 registerRouter.use(validator());
+registerRouter.use(cookieParser());
+registerRouter.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+registerRouter.use(flash());
 
 registerRouter.route('/')
   .get((req, res) => {
@@ -48,6 +58,7 @@ registerRouter.route('/signIn').post(
     // res.redirect('/register/profile');
     console.log(req.user);
     if (req.user.userType === 'client') {
+      req.flash('success', 'welcome user');
       res.redirect('/register/clientUI');
     }
     else
