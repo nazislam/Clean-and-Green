@@ -67,6 +67,9 @@ block content
           li.nav-item
             a.nav-link(href='/logout') Logout
 
+    div
+      if (messages.success)
+        p #{messages.success}
     .mapbox
       #map
         

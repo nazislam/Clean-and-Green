@@ -12,6 +12,7 @@ const router = express.Router();
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
+const flash = require('express-flash');
 const config = require('./config/config');
 const port = process.env.PORT || config.get("PORT");
 
@@ -24,7 +25,6 @@ const mapRouter = require('./map/map');
 
 pickupRouter.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', router);
 app.use(express.static('./public'));
 app.set('views', './public/views');
 app.set('view engine', 'pug');
@@ -35,8 +35,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use(flash());
 require('./config/passport')(app);
 
+app.use('/', router);
 app.use('/register', registerRouter);
 app.use('/pickup', pickupRouter);
 app.use('/process', processRouter);
