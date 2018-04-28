@@ -11,39 +11,39 @@ block content
                 span(aria-hidden='true') ×
             .modal-body
               .form-group
-                input.form-control(type='text' id='street' name='street' placeholder='Street Address')
+                input.form-control(type='text' id='street' name='street' placeholder='Street Address' required)
               .form-group
-                input.form-control(type='text' id='city' name='city' placeholder='City')
+                input.form-control(type='text' id='city' name='city' placeholder='City' required)
               .form-group
-                input.form-control(type='text' id='state' name='state' placeholder='State')
+                input.form-control(type='text' id='state' name='state' placeholder='State' required)
               .form-group
-                input.form-control(type='text' id='zip' name='zip' placeholder='Zip-Code')
+                input.form-control(type='text' id='zip' name='zip' placeholder='Zip-Code' required)
               h5 I'm recycling:
               .form-check.form-check-inline
-                input.form-check-input(id='checkboxGlass', type='checkbox', name='item', value='glass')
+                input.form-check-input(id='checkboxGlass', type='checkbox', name='item', value='glass' required autofocus)
                 label.form-check-label(for='checkboxGlass') Glass
               .form-check.form-check-inline
-                input.form-check-input(id='checkboxCans', type='checkbox' name='item' value='cans')
+                input.form-check-input(id='checkboxCans', type='checkbox' name='item' value='cans' required)
                 label.form-check-label(for='checkboxCans') Cans
               .form-check.form-check-inline
-                input.form-check-input(type='checkbox' id='checkboxPaper' name='item' value='paper')
+                input.form-check-input(type='checkbox' id='checkboxPaper' name='item' value='paper' required)
                 label.form-check-label(for='checkboxPaper') Paper
               .form-check.form-check-inline
-                input.form-check-input(type='checkbox' id='checkboxCartons' name='item' value='cartons')
+                input.form-check-input(type='checkbox' id='checkboxCartons' name='item' value='cartons' required)
                 label.form-check-label(for='checkboxCartons') Cartons
               .form-check.form-check-inline
-                input.form-check-input(type='checkbox' id='checkboxPlastic' name='item' value='plastic')
+                input.form-check-input(type='checkbox' id='checkboxPlastic' name='item' value='plastic' required)
                 label.form-check-label(for='checkboxPlastic') Plastic
               br
               h5 How many bags are you recycling?
               .form-check.form-check-inline
-                input.form-check-input(type='radio', id="container1", name='container', value='1')
+                input.form-check-input(type='radio', id="container1", name='container', value='1' required)
                 label.form-check-label(for='container1') 1
               .form-check.form-check-inline
-                input.form-check-input(type='radio', id="container2", name='container', value='2')
+                input.form-check-input(type='radio', id="container2", name='container', value='2' required)
                 label.form-check-label(for='container2') 2
               .form-check.form-check-inline
-                input.form-check-input(type='radio', id="container3", name='container', value='3')
+                input.form-check-input(type='radio', id="container3", name='container', value='3' required)
                 label.form-check-label(for='container3') 3
             .modal-footer.d-flex.justify-content-center
               button.btn.btn-success(type='submit') Submit    
@@ -58,6 +58,8 @@ block content
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
+          li.nav-item
+            button.btn.btn-outline-success Howdy! #{user.firstName}
           li.nav-item
             a.nav-link(href='/pickup', data-toggle='modal', data-target='#modalPickUp') Pick Up
           li.nav-item
@@ -126,3 +128,15 @@ block content
         }
         
       script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')
+      script.
+        $(function(){
+          var requiredCheckboxes = $(':checkbox[required]');
+          requiredCheckboxes.change(function(){
+            if(requiredCheckboxes.is(':checked')) {
+              requiredCheckboxes.removeAttr('required');
+            }
+            else {
+              requiredCheckboxes.attr('required', 'required');
+            }
+          });
+        });

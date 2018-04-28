@@ -1,54 +1,6 @@
 extends layout
 
 block content
-    #modalPickUp.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-      .modal-dialog.modal-dialog-centered(role='document')
-        .modal-content
-          form(method='POST', action='/pickup')
-            .modal-header.text-center
-              h5#exampleModalLabel.modal-title.w-100.font-weight-bold Pick-Up Request
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-            .modal-body
-              .form-group
-                input.form-control(type='text' id='street' name='street' placeholder='Street Address')
-              .form-group
-                input.form-control(type='text' id='city' name='city' placeholder='City')
-              .form-group
-                input.form-control(type='text' id='state' name='state' placeholder='State')
-              .form-group
-                input.form-control(type='text' id='zip' name='zip' placeholder='Zip-Code')
-              h5 I'm recycling:
-              .form-check.form-check-inline
-                input.form-check-input(id='checkboxGlass', type='checkbox', name='item', value='glass')
-                label.form-check-label(for='checkboxGlass') Glass
-              .form-check.form-check-inline
-                input.form-check-input(id='checkboxCans', type='checkbox' name='item' value='cans')
-                label.form-check-label(for='checkboxCans') Cans
-              .form-check.form-check-inline
-                input.form-check-input(type='checkbox' id='checkboxPaper' name='item' value='paper')
-                label.form-check-label(for='checkboxPaper') Paper
-              .form-check.form-check-inline
-                input.form-check-input(type='checkbox' id='checkboxCartons' name='item' value='cartons')
-                label.form-check-label(for='checkboxCartons') Cartons
-              .form-check.form-check-inline
-                input.form-check-input(type='checkbox' id='checkboxPlastic' name='item' value='plastic')
-                label.form-check-label(for='checkboxPlastic') Plastic
-              br
-              h5 How many bags are you recycling?
-              .form-check.form-check-inline
-                input.form-check-input(type='radio', id="container1", name='container', value='1')
-                label.form-check-label(for='container1') 1
-              .form-check.form-check-inline
-                input.form-check-input(type='radio', id="container2", name='container', value='2')
-                label.form-check-label(for='container2') 2
-              .form-check.form-check-inline
-                input.form-check-input(type='radio', id="container3", name='container', value='3')
-                label.form-check-label(for='container3') 3
-            .modal-footer.d-flex.justify-content-center
-              button.btn.btn-success(type='submit') Submit    
-
-
 
     .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
       a.navbar-brand(href='/home')
@@ -59,68 +11,87 @@ block content
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
+            button.btn.btn-outline-success Howdy! #{user.firstName}
+          li.nav-item
             a.nav-link(href='/register/profile') Profile
           li.nav-item
             a.nav-link(href='/logout') Logout
 
-    .mapbox
-      #map
-        
-      script.
-        var x = !{JSON.stringify(recyclables)}
-        
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById('map'), 
-            {
-              zoom: 15,
-              center: { lat: 44.69254300000001, lng: -73.46696199999997 }
-            }
-          );
+    div(class='container-fluid')
+      div(class='row')
+        div(class='col-3')
+          if (recyclables.length === 0)
+            p There is no pending order
+          else
+            form(method='POST', action='/process')
+              select(name='address')
+                each val in recyclables
+                  if val.processed === false
+                    option(value=val.street)= val.street
+              br
+              input(type='submit')
 
-          // list of markers
-          var markers = []
-          for (var i = 0; i < x.length; i++) {
-            var loc = {};
-            loc.coords = {};
-            loc.coords.lat = x[i].latitude;
-            loc.coords.lng = x[i].longitude;
-            loc.content = '<strong>'+ x[i].street + '</strong><br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
-            markers.push(loc);
-          }
-          console.log(markers);
+        div(class='col-9')
+          .mapbox
+            #map
+              
+            script.
+              var x = !{JSON.stringify(recyclables)}
+              
+              function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), 
+                  {
+                    zoom: 15,
+                    center: { lat: 44.69254300000001, lng: -73.46696199999997 }
+                  }
+                );
 
-          // Loop through markers
-          for (var i = 0; i < x.length; i++) {
-            addMarker( markers[i] ); 
-          }
+                // list of markers
+                var markers = []
+                for (var i = 0; i < x.length; i++) {
+                  if (x[i].processed === false) {
+                    var loc = {};
+                    loc.coords = {};
+                    loc.coords.lat = x[i].latitude;
+                    loc.coords.lng = x[i].longitude;
+                    loc.content = '<strong>'+ x[i].street + '</strong><br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
+                    markers.push(loc);
+                  }
+                }
+                console.log(markers);
 
-          function addMarker(props) {
-            var marker = new google.maps.Marker({
-              position: props.coords,
-              animation: google.maps.Animation.DROP,
-              map: map
-            });
+                // Loop through markers
+                for (var i = 0; i < x.length; i++) {
+                  addMarker( markers[i] ); 
+                }
 
-            // Check content
-            if (props.content) {
-              var infoWindow = new google.maps.InfoWindow({content: props.content}); 
-              marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-              });
-            }
+                function addMarker(props) {
+                  var marker = new google.maps.Marker({
+                    position: props.coords,
+                    animation: google.maps.Animation.DROP,
+                    map: map
+                  });
 
-          }
+                  // Check content
+                  if (props.content) {
+                    var infoWindow = new google.maps.InfoWindow({content: props.content}); 
+                    marker.addListener('click', function() {
+                      infoWindow.open(map, marker);
+                    });
+                  }
 
-        }
+                }
+
+              }
 
 
-        // >>> function for make markers bounce
-        function toggleBounce() {
-          if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-          } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
-        }
+              // >>> function for make markers bounce
+              function toggleBounce() {
+                if (marker.getAnimation() !== null) {
+                  marker.setAnimation(null);
+                } else {
+                  marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+              }
         
       script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrqfaam7V-4NH0SBi8LUcJRzMtaGl28Y4&callback=initMap')
