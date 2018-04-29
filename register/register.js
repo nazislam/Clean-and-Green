@@ -39,11 +39,13 @@ registerRouter.route('/')
       if (data.userType === 'client') {
         data.sentRequests = [];
         getModel().createClient(data);
+        req.flash('success', "You've successfully registered. Please login to send a pickup request.");
         res.redirect('/');
       }
       else {
         data.listOfpickups = [];
         getModel().createDriver(data);
+        req.flash('success', "You've successfully registered. Please login to pickup recyclables.");
         res.redirect('/');
       }
 
