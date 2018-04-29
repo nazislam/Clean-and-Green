@@ -52,8 +52,10 @@ block content
 
   .container-fluid.cover-home
     - if (messages.success) {
-      .alert.alert-success(role='alert')
+      .alert.alert-success.alert-dismissible.fade.show(role='alert')
         p #{messages.success}
+        button.close(type='button', data-dismiss='alert', aria-label='Close')
+          span(aria-hidden='true') &times;
     - }
     .caption-home
       h1.display-3 Clean and Green

@@ -35,11 +35,7 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
-<<<<<<< HEAD
 router.use(flash());
-=======
-app.use(flash());
->>>>>>> 55bfd924574082c7c56674c5b1f14f22fd14a169
 require('./config/passport')(app);
 
 app.use('/', router);
