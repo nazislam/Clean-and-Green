@@ -9,6 +9,9 @@ const registerRouter = express.Router();
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const validator = require('express-validator');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('express-flash');
 const {check, validationResult} = require('express-validator/check');
 
 function getModel() {
@@ -18,6 +21,13 @@ function getModel() {
 registerRouter.use(bodyParser.json());
 registerRouter.use(bodyParser.urlencoded({ extended: false }));
 registerRouter.use(validator());
+registerRouter.use(cookieParser());
+registerRouter.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+registerRouter.use(flash());
 
 registerRouter.route('/')
   .get((req, res) => {
@@ -29,12 +39,14 @@ registerRouter.route('/')
       if (data.userType === 'client') {
         data.sentRequests = [];
         getModel().createClient(data);
+        req.flash('success', "You've successfully registered. Please login to send a pickup request.");
         res.redirect('/');
         // res.redirect('/register/clientUI');
       }
       else {
         data.listOfpickups = [];
         getModel().createDriver(data);
+        req.flash('success', "You've successfully registered. Please login to pickup recyclables.");
         res.redirect('/');
         // res.redirect('/register/driverUI');
       }
