@@ -18,6 +18,7 @@ const port = process.env.PORT || config.get("PORT");
 
 const registerRouter = require('./register/register');
 const pickupRouter = require('./pickup/pickup');
+const processRouter = require('./process/process');
 const recyclablesRouter = require('./recyclables/recyclables');
 const listRouter = require('./list/list');
 const mapRouter = require('./map/map');
@@ -34,12 +35,17 @@ router.use(session({
     resave: true,
     saveUninitialized: true
 }));
+<<<<<<< HEAD
 router.use(flash());
+=======
+app.use(flash());
+>>>>>>> 55bfd924574082c7c56674c5b1f14f22fd14a169
 require('./config/passport')(app);
 
 app.use('/', router);
 app.use('/register', registerRouter);
 app.use('/pickup', pickupRouter);
+app.use('/process', processRouter);
 app.use('/recyclables', recyclablesRouter);
 app.use('/mapui/list', listRouter);
 app.use('/register/mapui', mapRouter);

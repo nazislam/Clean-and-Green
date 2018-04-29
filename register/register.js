@@ -13,6 +13,9 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
 const {check, validationResult} = require('express-validator/check');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('express-flash');
 
 function getModel() {
   return require('./model-datastore');
@@ -41,14 +44,12 @@ registerRouter.route('/')
         getModel().createClient(data);
         req.flash('success', "You've successfully registered. Please login to send a pickup request.");
         res.redirect('/');
-        // res.redirect('/register/clientUI');
       }
       else {
         data.listOfpickups = [];
         getModel().createDriver(data);
         req.flash('success', "You've successfully registered. Please login to pickup recyclables.");
         res.redirect('/');
-        // res.redirect('/register/driverUI');
       }
 
     });
@@ -62,6 +63,7 @@ registerRouter.route('/signIn').post(
     // res.redirect('/register/profile');
     console.log(req.user);
     if (req.user.userType === 'client') {
+      req.flash('success', 'welcome user');
       res.redirect('/register/clientUI');
     }
     else
@@ -85,8 +87,6 @@ registerRouter.route('/profile')
   });
 
 
-// this function needs to be updated to fetch the addresses
-// from database and show on map.
 registerRouter.route('/clientUI')
   .all(function(req, res, next) {
     if (!req.user) {
@@ -94,10 +94,13 @@ registerRouter.route('/clientUI')
     }
     next();
   })
-  .get((req, res) => {
+  .get((req, res, next) => {
     const user = req.user;
-    const message = '';
-    getModel().findRecyclables(user.email, (entities) => {
+    getModel().findRecyclables(user.email, (err, entities) => {
+      if (err) {
+        next(err);
+        return;
+      }
       res.render('clientUI', { user: req.user, location: {}, recyclables: entities });
     });
     // res.render('clientUI', { user: req.user, location: {}, response: message, recyclables: {} });
@@ -112,8 +115,14 @@ registerRouter.route('/driverUI')
     next();
   })
   .get((req, res) => {
-    const message = '';
-    res.render('driverUI', { user: req.user, location: {}, response: message, recyclables: {} });
+    const user = req.user;
+    getModel().listRecyclables((err, entities) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      res.render('driverUI', { user: req.user, location: {}, recyclables: entities });
+    });
   });
 
 registerRouter.route('/mapui/mylist')
