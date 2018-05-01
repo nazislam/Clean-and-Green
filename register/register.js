@@ -9,10 +9,10 @@ const registerRouter = express.Router();
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const validator = require('express-validator');
-const {check, validationResult} = require('express-validator/check');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
+const {check, validationResult} = require('express-validator/check');
 
 function getModel() {
   return require('./model-datastore');

@@ -29,13 +29,14 @@ app.use(express.static('./public'));
 app.set('views', './public/views');
 app.set('view engine', 'pug');
 
-app.use(cookieParser());
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
+router.use(cookieParser());
+router.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+
 }));
-app.use(flash());
+router.use(flash());
 require('./config/passport')(app);
 
 app.use('/', router);
