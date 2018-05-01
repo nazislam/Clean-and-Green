@@ -23,15 +23,17 @@ registerRouter.use(bodyParser.urlencoded({ extended: false }));
 registerRouter.use(validator());
 registerRouter.use(cookieParser());
 registerRouter.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+  secret: 'secret',
+  key: 'key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60000 }
 }));
 registerRouter.use(flash());
 
 registerRouter.route('/')
   .get((req, res) => {
-    res.render('../views/register');
+  res.render('../views/register');
   })
   .post((req, res) => {
     req.login(req.body, () => {
@@ -48,7 +50,6 @@ registerRouter.route('/')
         req.flash('success', "You've successfully registered. Please login to pickup recyclables.");
         res.redirect('/');
       }
-
     });
   });
 
@@ -93,7 +94,7 @@ registerRouter.route('/clientUI')
   })
   .get((req, res, next) => {
     const user = req.user;
-    getModel().findRecyclables(user.email, (err, entities) => {
+    getModel().findRecyclables(user.email, function(err, entities) {
       if (err) {
         next(err);
         return;
