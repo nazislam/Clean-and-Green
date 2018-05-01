@@ -6,7 +6,11 @@
 
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');
-const ds = Datastore({ projectId: config.get('GCLOUD_PROJECT') });
+const path = require('path');
+const ds = Datastore({ 
+  projectId: config.get('GCLOUD_PROJECT'),
+  keyFilename: path.join(__dirname, '../config/keyFile.json')
+});
 
 const kindClient = "Client";
 const kindDriver = "Driver";

@@ -49,7 +49,12 @@ block content
               button.btn.btn-success(type='submit') Submit    
 
 
-
+    - if (messages.success) {
+      .alert.alert-success.alert-dismissible.fade.show(role='alert')
+        p #{messages.success}
+        button.close(type='button', data-dismiss='alert', aria-label='Close')
+          span(aria-hidden='true') &times;
+    - }
     .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
       a.navbar-brand(href='/home')
         img(src='/css/img/recyclelogo.png', width='35', height='35', alt='GnC')
@@ -68,8 +73,12 @@ block content
             a.nav-link(href='/logout') Logout
 
     div
-      if (messages.success)
-        p #{messages.success}
+      - if (messages.success) {
+        .alert.alert-success.alert-dismissible.fade.show(role='alert')
+          p #{messages.success}
+          button.close(type='button', data-dismiss='alert', aria-label='Close')
+            span(aria-hidden='true') &times;
+      - }
     .mapbox
       #map
         

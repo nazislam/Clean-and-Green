@@ -34,6 +34,7 @@ router.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true
+
 }));
 router.use(flash());
 require('./config/passport')(app);
@@ -47,19 +48,19 @@ app.use('/mapui/list', listRouter);
 app.use('/register/mapui', mapRouter);
 
 router.get('/', (req, res) => {
-    res.render('home');
+  res.render('home');
 });
 
 router.get('/home', (req, res) => {
-    res.redirect('/');
+  res.redirect('/');
 });
 
 router.get('/register', (req, res) => {
-    res.render('register');
+  res.render('register');
 });
 
 router.get('/signin', (req, res) => {
-    res.render('signIn');
+  res.render('signIn');
 });
 
 app.get('/logout', (req, res) => {
@@ -72,5 +73,5 @@ app.get('*', function(req, res) {
 });
 
 app.listen(port, (req, res) => {
-    console.log('server is running ON PORT:' + port);
+  console.log('server is running ON PORT:' + port);
 });
