@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "clean-and-green",
+  "private_key_id": "26bcc0de115c6cf21592cc45130810788e101db4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC0yxcxmdGME1aM\n8R61WWiRzmJ9xU6ko+2X3MlRIQqUPxDW1vCNEiLW9aDiHreI28BrMEreYakaWin9\n7pNJBY6qnR1WVW3o1dUhNGaUCGpR9/anfahbDC3K2Cd1/gewCctxUQNnXEhJH6G6\nQdy9Kpz9nKfj8qLCDODasY9SxVEfae3Rp7V46iSx4KQfXdZjpajpi1V21uhedz9G\nTtGXdRfPSgT+7t87Loh7t3TqlvVMiXgtpRd736q2gLJdeXQAXmZlYq5iTxs9gFb0\nDEoCrRb1xpMJCXHsnauwm+OiQL7xFVzC4nNbVr9OeYWwQKDibnnTY23u40xVgGVl\nDCMhiCtDAgMBAAECggEAAT3yfqDOq6QsXhw2ytzaBLFCxBf9+NBJenwYKIXgXvFX\nrqEAqQrcx/rUIy4ZjfV9FB9tvD02gvcwmfHnjdU5AwjlIcUy5gWmCNCTRK5a+cR2\n0D4sPrEEzF8BVvbPbbWpOuiyWcoRJVgGNsFGpSQITQ8kX0LdhYMH2dZ3/80QyBnP\nTHR4Q024jsdV6xlI31YMHgCG9mt5wvy3nK/ZquVTRjQwUkEwNGbMbXNWgAty8Ge7\n5IwvNfhzo43A/Bc/qXYhwUeHf90lNc6LNN30WLIuVyrQ/S0cFuqEMJHINC8bWRhq\n1dfx+48pObml+KnvsbLwaV82v2Peh/QZFSFqp43cjQKBgQDnonBV7eUgrU7vEB3t\nWT4AVctQzjERH6cXOXcX7O1WOlLPh3/kRVPLmMO48XSovh4nbOXPZNTiDyupoKn5\ni+jGP67ZlWhMUv8O1DZad1ETwRGmjZ2nk4uGUnTpilqInyOQUaXdakblczaWJP9X\n0I8Y4xFdnEPW81Ezyt6SFRtIBwKBgQDHz5ORjD9L8sJLFxhJMLXeuvF3q+6kfz3N\nfcaBegoTfKhw4PKERWskZVbyDwOaVjsOohRD0YmlMXINalmXDPdkIJXxK5NNGGDI\nHTnZur3/RW6xGzpU/q5/FFRFNfsxNZs+3txs9T6ubAGDnQQTyVavWmCy2QjcM3v6\nMcvi8jgb5QKBgEC7kZ9CA3V1WYjPvT1WYlBfqZkkdmvtp5mC8rhZ+x3M4NWkbWZS\nxY8xWwk1WT/LGcw0z6h86k1epfoar0XRBrVYmLmv2lzyGNuBDMuNargVjaQ5EWUC\ng8x/ALM/efuSVbMATlUpXTTEVO3y2vUkkMkItBKwF/lbOEc8G6VBhsVDAoGBAJOv\nYatatg40yFcoItM2JbcTBhcmBaWgRtXz+R0KTxhIM1f7bEVH6gFkxfb0Ef2pbs1K\nDyBxaAOpoFs6GC4Fb3WagDlZs+5v7lj7AR9lX7mmYEKXlW3tMJzNMdxWIewlazH1\nF4eRXVseiZ/2FmVpk6DYdFC9Ckd35lLvK3v6/G3hAoGBAN/V2VBNMS/tYpYzHTDL\ntFqSBY62po7DFqdn7DL7N2+N0lWrH/qEyNWct4djwoTnLteoVPJeDYTOh0T9Ip6R\nQODSfg8sZovnoofGxMWkwq6KfQt0ey+EG1asWzIK7DdbIrvU0RcuzpFeefsqf1CQ\nO6R/AozKK2DNnOzwcsJZCkKI\n-----END PRIVATE KEY-----\n",
+  "client_email": "clean-and-green@appspot.gserviceaccount.com",
+  "client_id": "100576784207336478087",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/clean-and-green%40appspot.gserviceaccount.com"
+}

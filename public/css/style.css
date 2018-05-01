@@ -1,0 +1,166 @@
+html, body {
+  height: 100%;
+  font-family: 'Raleway', sans-serif;
+}
+
+.container-fluid {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Background cover */
+
+.cover {
+  background: #222 url('img/greenbg.jpeg') center center no-repeat;
+  background-size: cover;
+  color: white !important;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+/* Registration Box */
+
+.register-box {
+  padding: 10px;
+  top: 15%;
+  border: 0px solid #fff;
+  /* Registration box shadow */
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+}
+
+/* Registration Form */
+.register-form {
+  margin: 15px;
+  padding: 10px;
+}
+
+/* Sign-In Botton */
+.sign-in-btn {
+  padding-top: 5px;
+  margin: 0;
+  text-align: center;
+}
+
+/* Sign-In paragraph */
+#signin-option {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0;
+  text-align: center;
+}
+
+#register-header {
+  text-align: center;
+}
+
+#signin-header {
+  text-align: center;
+}
+
+/* Sign-In Box */
+.signinbox {
+  top: 25%;
+  padding: 10px;
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+}
+
+.sign-in-form {
+  margin: 15px;
+  padding: 10px;
+}
+
+/* Drop-off Form */
+.drop-off-form {
+  padding: 10px;
+  top: 10%;
+  border: 0px solid #fff;
+  /* Drop-off box shadow */
+  -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.75);
+}
+
+#map {
+  width: 100%;
+  height: 550px;
+}
+
+.profilebox {
+  padding-top: 15px;
+  margin: 15px;
+}
+
+.profilepic {
+  padding: 0px;
+}
+.mapbtn{
+  margin: 10px;
+}
+
+/* HOME PAGE DESIGN */
+
+.cover-home {
+  background: url("img/recycle.jpg") center no-repeat;
+  position: relative;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+  opacity: 0.85;
+}
+
+.caption-home {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 40%;
+  text-align: center;
+  color: white;
+}
+
+#pcaption {
+  font-size: 25px;
+}
+
+.bottons {
+  margin: 5px;
+}
+
+/* HOW IT WORKS CONTENT */
+
+.how-it-works {
+  width: 100%;
+  left: 0;
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+}
+
+/* Center align the text within the three columns below the carousel */
+
+.how-box .col-lg-4 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.how-box h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+}
+
+.how-box .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+
+.site-footer {
+  margin: 10px;
+  padding: 5px;
+  color: black;
+  text-align: center;
+}

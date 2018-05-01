@@ -1,0 +1,37 @@
+extends layout
+
+block header
+  
+block content
+  // - var user = req.user
+  .container-fluid
+    .profilebox
+      .panel.panel-info
+        .panel-heading
+          h3.panel-title Welcome, #{user.firstName}!
+        .panel-body
+          .row
+            .col-md-4.col-lg-3(align='center')
+              img.profilepic.img-circle.img-responsive(alt='User Pic', src='https://i.pinimg.com/originals/7a/36/7d/7a367dc0017ddb08a150071aedeb30f5.png')
+            .col-md-8.col-lg-9
+              table.table.table-user-information
+                tbody
+                  tr
+                    td #[b First Name:]
+                    td= user.firstName
+                  tr
+                    td #[b Last Name:]
+                    td= user.lastName
+                  tr
+                    td #[b E-mail Address:]
+                    td= user.email
+                  tr
+                  tr
+                    td #[b User Type:]
+                    td= user.userType.charAt(0).toUpperCase() + user.userType.slice(1)
+                  tr
+                  tr
+                    td #[b Password:]
+                    td= user.password
+              a.btn.btn-primary.mx-2(href='/register/clientUI') Map UI
+              a.btn.btn-primary.mx-2(href='/logout') Logout
