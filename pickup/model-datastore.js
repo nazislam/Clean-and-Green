@@ -6,8 +6,10 @@
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');
 const request = require('request');
-const ds = Datastore({
-    projectId: config.get('GCLOUD_PROJECT')
+const path = require('path');
+const ds = Datastore({ 
+  projectId: config.get('GCLOUD_PROJECT'),
+  keyFilename: path.join(__dirname, '../config/keyFile.json')
 });
 const kind = "Recyclables";
 
