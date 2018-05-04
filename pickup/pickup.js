@@ -17,10 +17,10 @@ pickupRouter.use(bodyParser.urlencoded({ extended: false }));
 
 pickupRouter.route('/')
   .all(function(req, res, next) {
-      if (!req.user) {
-          res.redirect('/');
-      }
-      next();
+    if (!req.user) {
+      res.redirect('/');
+    }
+    next();
   })
   .get((req, res) => {
     res.render('../views/pickup');
@@ -33,7 +33,9 @@ pickupRouter.route('/')
     }
     data.processed = false;
     getModel().create(data, userEmail);
-    res.redirect('/register/clientUI');
+    setTimeout(function() {
+      res.redirect('/register/clientUI');
+    }, 5000);
 });
 
 module.exports = pickupRouter;
