@@ -85,15 +85,25 @@ function create(data, email) {
               .filter('email', '=', email);
             ds.runQuery(query).then(results => {
               const clients = results[0];
-              clients.forEach(client => {
-                const clientKey = client[ds.KEY];
-                data.creatorId = clientKey.id;
-                const entity = {
-                  key: newKey,
-                  data: toDatastore(data)
-                };
-                ds.save(entity);
+              console.log('clients:-->', clients[0][ds.KEY].id);
+              const q2 = ds.createQuery('Recyclables')
+                .filter('creatorId', '=', clients[0][ds.KEY].id);
+              ds.runQuery(q2).then(r => {
+                const rcy = r[0];
+                if (rcy.length === 0) {
+                  clients.forEach(client => {
+                    const clientKey = client[ds.KEY];
+                    data.creatorId = clientKey.id;
+                    const entity = {
+                      key: newKey,
+                      data: toDatastore(data)
+                    };
+                    ds.save(entity);
+                  });
+                }
               });
+
+
             });
 
           }
