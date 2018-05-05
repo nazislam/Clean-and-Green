@@ -3,6 +3,7 @@
 
 'use strict';
 
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const processRouter = express.Router();
@@ -22,14 +23,13 @@ processRouter.route('/')
     }
     next();
   })
-  .get((req, res) => {
-    res.send('in process router');
-  })
+  // .get((req, res) => {
+  //   res.send('in process router');
+  // })
   .post((req, res) => {
     const data = req.body;
-    console.log(data);
     const address = data.address;
-    getModel().processRequest(address);
+    getModel().processRequest(req.user.email, address);
     setTimeout(function() {
       res.redirect('/register/driverUI');
     }, 4000);
