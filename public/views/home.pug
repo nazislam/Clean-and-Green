@@ -6,7 +6,7 @@ block content
   #modalRegisterForm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
     .modal-dialog.modal-dialog-centered(role='document')
       .modal-content
-        form(method='POST', id='addUserForm', action='/register')
+        form(method='post', id='addUserForm', action='/register')
           .modal-header.text-center
             h5#exampleModalLabel.modal-title.w-100.font-weight-bold Registration
             button.close(type='button', data-dismiss='modal', aria-label='Close')

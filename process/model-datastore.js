@@ -44,24 +44,20 @@ function processItemAsArray(itemAsString) {
 
 function processRequest(email, address) {
   const query = ds.createQuery(kindRecyclables).filter('street', '=', address);
-  const q2 = ds.createQuery(kindDriver).filter('email', '=', email);
 
   ds.runQuery(query).then(results => {
     const entries = results[0];
     entries.forEach(entry => {
-      ds.runQuery(q2).then(r => {
-        const driver = r[0][0];
-        const driverId = driver[ds.KEY].id;
-        entry.driverId = driverId;
-        const entryKey = entry[ds.KEY];
-        const newKey = ds.key(kindProcessed);
-        entry.processed = true;
-        const entity = { key: newKey, data: entry };
-        ds.save(entity);
-        ds.delete(entryKey);
-      });
+      const entryKey = entry[ds.KEY];
+      entry.processed = true;
+      const entity = {
+        key: entryKey,
+        data: entry
+      };
+      ds.update(entity);
     });
   });
+
 }
 
 

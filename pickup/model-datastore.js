@@ -56,9 +56,7 @@ function create(data, email) {
     zip: data.zip
   };
   var inputAddress = generateAddress(rawAddress);
-  console.log(inputAddress);
   const encodedAddress = encodeURIComponent(inputAddress);
-  console.log(encodedAddress);
   
 
   // For getting latitude and longitude
@@ -69,13 +67,10 @@ function create(data, email) {
       json: true
     }, (error, response, body) => {
             requestCounter++;
-            console.log(requestCounter);
           if (body.results[0] !== undefined && requestCounter >= 1 && !data.latitude) {
             const message = '';
             data.latitude = body.results[0].geometry.location.lat;
-            console.log(data.latitude);
             data.longitude = body.results[0].geometry.location.lng;
-            console.log(data.longitude);
             var addressFound = true;
 
             clearInterval(requestLoop);
@@ -85,9 +80,9 @@ function create(data, email) {
               .filter('email', '=', email);
             ds.runQuery(query).then(results => {
               const clients = results[0];
-              console.log('clients:-->', clients[0][ds.KEY].id);
               const q2 = ds.createQuery('Recyclables')
-                .filter('creatorId', '=', clients[0][ds.KEY].id);
+                .filter('creatorId', '=', clients[0][ds.KEY].id)
+                .filter('processed', '=', false);
               ds.runQuery(q2).then(r => {
                 const rcy = r[0];
                 if (rcy.length === 0) {
