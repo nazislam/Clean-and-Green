@@ -32,7 +32,7 @@ processRouter.route('/')
     getModel().processRequest(address);
     setTimeout(function() {
       res.redirect('/register/driverUI');
-    }, 5000);
+    }, 4000);
 });
 
 module.exports = processRouter;

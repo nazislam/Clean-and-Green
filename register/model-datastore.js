@@ -16,22 +16,22 @@ const kindClient = "Client";
 const kindDriver = "Driver";
 
 function fromDatastore (obj) {
-    obj.id = obj[Datastore.KEY].id;
-    return obj;
+  obj.id = obj[Datastore.KEY].id;
+  return obj;
 }
 
 function toDatastore (obj) {
-    const results = [];
-    Object.keys(obj).forEach((k) => {
-        if (obj[k] === undefined) {
-            return;
-        }
-        results.push({
-            name: k,
-            value: obj[k]
-        });
+  const results = [];
+  Object.keys(obj).forEach((k) => {
+    if (obj[k] === undefined) {
+      return;
+    }
+    results.push({
+      name: k,
+      value: obj[k]
     });
-    return results;
+  });
+  return results;
 }
 
 function findRecyclables(userEmail, cb) {

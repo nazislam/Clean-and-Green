@@ -31,9 +31,9 @@ app.set('view engine', 'pug');
 
 app.use(cookieParser());
 app.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
 }));
 app.use(flash());
 require('./config/passport')(app);
@@ -51,7 +51,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/home', (req, res) => {
-    res.redirect('/');
+  req.flash('loginFail', 'The email or password you have entered is invalid. Please try again.');
+  res.redirect('/');
 });
 
 router.get('/register', (req, res) => {

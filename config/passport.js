@@ -8,19 +8,19 @@ const passport = require('passport');
 const st = require('./strategies/local.strategy');
 
 module.exports = function(app) {
-    app.use(passport.initialize());
-    app.use(passport.session());
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-    passport.serializeUser((user, done) => {
-        done(null, user);
-    });
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
 
-    passport.deserializeUser((user, done) => {
-        done(null, user);
-    });
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
 
-    st.l1();
-    st.l2();
+  st.l1();
+  st.l2();
 
-    // require('./strategies/local.strategy')();
+  // require('./strategies/local.strategy')();
 };

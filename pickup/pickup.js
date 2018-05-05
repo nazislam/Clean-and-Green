@@ -3,6 +3,7 @@
 
 'use strict';
 
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const pickupRouter = express.Router();
@@ -35,7 +36,7 @@ pickupRouter.route('/')
     getModel().create(data, userEmail);
     setTimeout(function() {
       res.redirect('/register/clientUI');
-    }, 5000);
+    }, 4000);
 });
 
 module.exports = pickupRouter;

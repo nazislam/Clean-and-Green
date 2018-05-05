@@ -23,9 +23,9 @@ registerRouter.use(bodyParser.urlencoded({ extended: false }));
 registerRouter.use(validator());
 registerRouter.use(cookieParser());
 registerRouter.use(session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
 }));
 registerRouter.use(flash());
 
@@ -37,30 +37,28 @@ registerRouter.route('/')
     req.login(req.body, () => {
       const data = req.body;
       if (data.userType === 'client') {
-        data.sentRequests = [];
+        // data.sentRequests = [];
         getModel().createClient(data);
         req.flash('success', "You've successfully registered. Please login to send a pickup request.");
         res.redirect('/');
       }
       else {
-        data.listOfpickups = [];
+        // data.listOfpickups = [];
         getModel().createDriver(data);
         req.flash('success', "You've successfully registered. Please login to pickup recyclables.");
         res.redirect('/');
       }
-
     });
   });
 
 registerRouter.route('/signIn').post(
   passport.authenticate(['local', 'local2'], { session: true, 
     // successRedirect: '/register/profile', 
-    failureRedirect: '/' }),
+    failureRedirect: '/home',
+    failureFlash: true}),
   (req, res) => {
-    // res.redirect('/register/profile');
     console.log(req.user);
     if (req.user.userType === 'client') {
-      req.flash('success', 'welcome user');
       res.redirect('/register/clientUI');
     }
     else

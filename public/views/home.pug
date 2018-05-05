@@ -51,6 +51,18 @@ block content
             button.btn.btn-success(type='button', data-dismiss='modal') Close
 
   .container-fluid.cover-home
+    - if (message) {
+      .alert.alert-success.alert-dismissible.fade.show(role='alert')
+        p #{message}
+        button.close(type='button', data-dismiss='alert', aria-label='Close')
+          span(aria-hidden='true') &times;
+    - }
+    - if (messages.loginFail) {
+      .alert.alert-success.alert-dismissible.fade.show(role='alert')
+        p #{messages.loginFail}
+        button.close(type='button', data-dismiss='alert', aria-label='Close')
+          span(aria-hidden='true') &times;
+    - }
     - if (messages.success) {
       .alert.alert-success.alert-dismissible.fade.show(role='alert')
         p #{messages.success}
