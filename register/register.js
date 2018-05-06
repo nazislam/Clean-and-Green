@@ -57,7 +57,6 @@ registerRouter.route('/signIn').post(
     failureRedirect: '/home',
     failureFlash: true}),
   (req, res) => {
-    console.log(req.user);
     if (req.user.userType === 'client') {
       res.redirect('/register/clientUI');
     }
@@ -91,7 +90,6 @@ registerRouter.route('/clientUI')
   })
   .get((req, res, next) => {
     const user = req.user;
-    console.log('user:-->', user);
     getModel().findRecyclables(user.email, function(err, entities) {
       if (err) {
         next(err);
