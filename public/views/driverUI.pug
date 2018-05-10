@@ -19,8 +19,7 @@ block content
 
     div(class='container-fluid')
       div(class='row')
-        div(class='col-3')
-<<<<<<< HEAD
+        div.dark_sidebar(class='col-3')
           if (recyclables.length === 0)
             p There is no pending order
           else
@@ -30,27 +29,8 @@ block content
                   span= v.street
                   br
                   input(style='display:none', name='address', value=v.street)
-                  button.btn.btn-sm.btn-primary(type='submit') Process
+                  button.btn.btn-sm.btn-success(type='submit') Process
                 
-                // select(name='address')
-                //   each val in recyclables
-                //     if val.processed === false
-                //       option(value=val.street)= val.street
-                // br
-                // input(type='submit')
-=======
-          .dark_sidebar
-            if (recyclables.length === 0)
-              p There is no pending order
-            else
-              form(method='POST', action='/process')
-                select(name='address')
-                  each val in recyclables
-                    if val.processed === false
-                      option(value=val.street)= val.street
-                br
-                input(type='submit')
->>>>>>> bcca3b72fc580ad87e6f2fd68a6c969c4e5c521f
 
         div(class='col-9')
           .mapbox_driver
@@ -59,161 +39,150 @@ block content
             script.
               var x = !{JSON.stringify(recyclables)}
               
+
               function initMap() {
-                var map = new google.maps.Map(document.getElementById('map'), 
-                  {
-                    zoom: 15,
-                    center: { lat: 44.69254300000001, lng: -73.46696199999997 },
-<<<<<<< HEAD
+                  var map = new google.maps.Map(document.getElementById('map'), 
+                    {
+                      zoom: 15,
+                      center: { lat: 44.69254300000001, lng: -73.46696199999997 },
+                      disableDefaultUI: true,
 
-                    styles: [
-                      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-                      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-                      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-                      {
-                        featureType: 'administrative.locality',
-                        elementType: 'labels.text.fill',
-                        stylers: [{color: '#d59563'}]
-                      },
-                      {
-                        featureType: 'poi',
-                        elementType: 'labels.text.fill',
-                        stylers: [{color: '#d59563'}]
-                      },
-                      {
-                        featureType: 'poi.park',
-                        elementType: 'geometry',
-                        stylers: [{color: '#263c3f'}]
-                      },
-                      {
-                        featureType: 'poi.park',
-                        elementType: 'labels.text.fill',
-                        stylers: [{color: '#6b9a76'}]
-                      },
-                      {
-                        featureType: 'road',
-                        elementType: 'geometry',
-                        stylers: [{color: '#38414e'}]
-                      },
-                      {
-                        featureType: 'road',
-                        elementType: 'geometry.stroke',
-                        stylers: [{color: '#212a37'}]
-                      },
-                      {
-                        featureType: 'road',
-                        elementType: 'labels.text.fill',
-                        stylers: [{color: '#9ca5b3'}]
-                      },
-                      {
-                        featureType: 'road.highway',
-                        elementType: 'geometry',
-                        stylers: [{color: '#746855'}]
-                      },
-                      {
-                        featureType: 'road.highway',
-                        elementType: 'geometry.stroke',
-                        stylers: [{color: '#1f2835'}]
-                      },
-                      {
-                        featureType: 'road.highway',
-                        elementType: 'labels.text.fill',
-                        stylers: [{color: '#f3d19c'}]
-                      },
-                      {
-                        featureType: 'transit',
-                        elementType: 'geometry',
-                        stylers: [{color: '#2f3948'}]
-                      },
-                      {
-                        featureType: 'transit.station',
-                        elementType: 'labels.text.fill',
-                        stylers: [{color: '#d59563'}]
-                      },
-                      {
-                        featureType: 'water',
-                        elementType: 'geometry',
-                        stylers: [{color: '#17263c'}]
-                      },
-                      {
-                        featureType: 'water',
-                        elementType: 'labels.text.fill',
-                        stylers: [{color: '#515c6d'}]
-                      },
-                      {
-                        featureType: 'water',
-                        elementType: 'labels.text.stroke',
-                        stylers: [{color: '#17263c'}]
-                      }
-                    ]
-=======
-                    disableDefaultUI: true
->>>>>>> bcca3b72fc580ad87e6f2fd68a6c969c4e5c521f
+                      styles: [
+                        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                        {
+                          featureType: 'administrative.locality',
+                          elementType: 'labels.text.fill',
+                          stylers: [{color: '#d59563'}]
+                        },
+                        {
+                          featureType: 'poi',
+                          elementType: 'labels.text.fill',
+                          stylers: [{color: '#d59563'}]
+                        },
+                        {
+                          featureType: 'poi.park',
+                          elementType: 'geometry',
+                          stylers: [{color: '#263c3f'}]
+                        },
+                        {
+                          featureType: 'poi.park',
+                          elementType: 'labels.text.fill',
+                          stylers: [{color: '#6b9a76'}]
+                        },
+                        {
+                          featureType: 'road',
+                          elementType: 'geometry',
+                          stylers: [{color: '#38414e'}]
+                        },
+                        {
+                          featureType: 'road',
+                          elementType: 'geometry.stroke',
+                          stylers: [{color: '#212a37'}]
+                        },
+                        {
+                          featureType: 'road',
+                          elementType: 'labels.text.fill',
+                          stylers: [{color: '#9ca5b3'}]
+                        },
+                        {
+                          featureType: 'road.highway',
+                          elementType: 'geometry',
+                          stylers: [{color: '#746855'}]
+                        },
+                        {
+                          featureType: 'road.highway',
+                          elementType: 'geometry.stroke',
+                          stylers: [{color: '#1f2835'}]
+                        },
+                        {
+                          featureType: 'road.highway',
+                          elementType: 'labels.text.fill',
+                          stylers: [{color: '#f3d19c'}]
+                        },
+                        {
+                          featureType: 'transit',
+                          elementType: 'geometry',
+                          stylers: [{color: '#2f3948'}]
+                        },
+                        {
+                          featureType: 'transit.station',
+                          elementType: 'labels.text.fill',
+                          stylers: [{color: '#d59563'}]
+                        },
+                        {
+                          featureType: 'water',
+                          elementType: 'geometry',
+                          stylers: [{color: '#17263c'}]
+                        },
+                        {
+                          featureType: 'water',
+                          elementType: 'labels.text.fill',
+                          stylers: [{color: '#515c6d'}]
+                        },
+                        {
+                          featureType: 'water',
+                          elementType: 'labels.text.stroke',
+                          stylers: [{color: '#17263c'}]
+                        }
+                      ]
+                    }
+                  );
+
+                  var markers = []
+                  for (var i = 0; i < x.length; i++) {
+                    var loc = {};
+                    loc.coords = {};
+                    loc.coords.lat = x[i].latitude;
+                    loc.coords.lng = x[i].longitude;
+                    loc.content = '<strong>'+ x[i].street + '</strong><br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
+                    markers.push(loc);
                   }
-                );
 
-                // list of markers
-                var markers = []
-                for (var i = 0; i < x.length; i++) {
-                  var loc = {};
-                  loc.coords = {};
-                  loc.coords.lat = x[i].latitude;
-                  loc.coords.lng = x[i].longitude;
-                  loc.content = '<strong>'+ x[i].street + '</strong><br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
-                  markers.push(loc);
-                }
+                  for (var i = 0; i < x.length; i++) {
+                    if (x[i].processed == false) 
+                      addNotProcessedMarker( markers[i] ); 
+                    else
+                      addProcessedMarker( markers[i] ); 
+                  }
 
-                // for (var i = 0; i < x.length; i++) {
-                //   if (x[i].processed === true) {
-                //     var loc = {};
-                //     loc.coords = {};
-                //     loc.coords.lat = x[i].latitude;
-                //     loc.coords.lng = x[i].longitude;
-                //     loc.content = '<strong>'+ x[i].street + '</strong><br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
-                //     markers.push(loc);
-                //   }
-                // }
-                // console.log(markers);
-
-                // Loop through markers
-                for (var i = 0; i < x.length; i++) {
-                  if (x[i].processed == false) 
-                    addNotProcessedMarker( markers[i] ); 
-                  else
-                    addProcessedMarker( markers[i] ); 
-                }
-
-                function addNotProcessedMarker(props) {
-                  var marker = new google.maps.Marker({
-                    position: props.coords,
-                    animation: google.maps.Animation.DROP,
-                    map: map,
-                    icon: '../css/img/recycling-148349_960_720.png'
-                  });
-                  if (props.content) {
-                    var infoWindow = new google.maps.InfoWindow({content: props.content}); 
-                    marker.addListener('click', function() {
-                      infoWindow.open(map, marker);
+                  function addNotProcessedMarker(props) {
+                    var marker = new google.maps.Marker({
+                      position: props.coords,
+                      animation: google.maps.Animation.DROP,
+                      map: map,
+                      icon: '../css/img/recycling-148349_960_720.png'
                     });
+                    if (props.content) {
+                      var infoWindow = new google.maps.InfoWindow({content: props.content}); 
+                      marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                      });
+                    }
                   }
-                }
 
-                function addProcessedMarker(props) {
-                  var marker = new google.maps.Marker({
-                    position: props.coords,
-                    animation: google.maps.Animation.DROP,
-                    map: map,
-                    icon: '../css/img/processed.png'
-                  });
-                  if (props.content) {
-                    var infoWindow = new google.maps.InfoWindow({content: props.content}); 
-                    marker.addListener('click', function() {
-                      infoWindow.open(map, marker);
+                  function addProcessedMarker(props) {
+                    var marker = new google.maps.Marker({
+                      position: props.coords,
+                      animation: google.maps.Animation.DROP,
+                      map: map,
+                      icon: '../css/img/processed.png'
                     });
+                    if (props.content) {
+                      var infoWindow = new google.maps.InfoWindow({content: props.content}); 
+                      marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                      });
+                    }
                   }
+
                 }
 
-              }
+
+
+
+
 
 
               // >>> function for make markers bounce

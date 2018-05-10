@@ -8,7 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const Datastore = require('@google-cloud/datastore');
 const ds = Datastore({
-  projectId: 'cleangreen-198621'
+  projectId: 'clean-and-green'
 });
 
 function getModel() {

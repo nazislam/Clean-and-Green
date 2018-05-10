@@ -9,7 +9,7 @@ const config = require('../config/config');
 const request = require('request');
 const path = require('path');
 const ds = Datastore({
-  projectId: config.get('cleangreen-198621')
+  projectId: 'clean-and-green'
 });
 const kindRecyclables = "Recyclables";
 const kindProcessed = "Processed";
