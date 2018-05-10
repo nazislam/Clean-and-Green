@@ -110,7 +110,7 @@ registerRouter.route('/driverUI')
   })
   .get((req, res) => {
     const user = req.user;
-    getModel().listRecyclables((err, entities) => {
+    getModel().listRecyclables((err, entities, next) => {
       if (err) {
         next(err);
         return;

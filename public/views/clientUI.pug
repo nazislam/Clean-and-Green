@@ -57,20 +57,20 @@ block content
     - }
     .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
       a.navbar-brand(href='/home')
-        img(src='/css/img/recyclelogo.png', width='35', height='35', alt='GnC')
+        img(src='/css/img/recyclelogo.png', width='35', height='35', alt='GnC') 
+      span.user_type Client #{user.firstName}
 
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
-            button.btn.btn-outline-success Howdy! #{user.firstName}
+            a.client_btn.btn.btn-success(href='/pickup', data-toggle='modal', data-target='#modalPickUp') Request Pick Up
           li.nav-item
-            a.nav-link(href='/pickup', data-toggle='modal', data-target='#modalPickUp') Pick Up
+            a.client_btn.btn.btn-success(href='/register/profile') Profile
+        ul.navbar-nav.ml-auto
           li.nav-item
-            a.nav-link(href='/register/profile') Profile
-          li.nav-item
-            a.nav-link(href='/logout') Logout
+            a.btn.btn-success(href='/logout') Logout
 
     div
       - if (messages.success) {
@@ -89,7 +89,9 @@ block content
           var map = new google.maps.Map(document.getElementById('map'), 
             {
               zoom: 15,
-              center: { lat: 44.69254300000001, lng: -73.46696199999997 }
+              center: { lat: 44.69254300000001, lng: -73.46696199999997 },
+              disableDefaultUI: true
+              
             }
           );
 

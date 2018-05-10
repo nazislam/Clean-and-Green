@@ -5,21 +5,22 @@ block content
     .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
       a.navbar-brand(href='/home')
         img(src='/css/img/recyclelogo.png', width='35', height='35', alt='GnC')
+      span.user_type Driver #{user.firstName}
 
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
         ul.navbar-nav.mr-auto
           li.nav-item
-            button.btn.btn-outline-success Howdy! #{user.firstName}
+            a.client_btn.btn.btn-success(href='/register/profile') Profile
+        ul.navbar-nav.ml-auto
           li.nav-item
-            a.nav-link(href='/register/profile') Profile
-          li.nav-item
-            a.nav-link(href='/logout') Logout
+            a.btn.btn-success(href='/logout') Logout
 
     div(class='container-fluid')
       div(class='row')
         div(class='col-3')
+<<<<<<< HEAD
           if (recyclables.length === 0)
             p There is no pending order
           else
@@ -37,9 +38,22 @@ block content
                 //       option(value=val.street)= val.street
                 // br
                 // input(type='submit')
+=======
+          .dark_sidebar
+            if (recyclables.length === 0)
+              p There is no pending order
+            else
+              form(method='POST', action='/process')
+                select(name='address')
+                  each val in recyclables
+                    if val.processed === false
+                      option(value=val.street)= val.street
+                br
+                input(type='submit')
+>>>>>>> bcca3b72fc580ad87e6f2fd68a6c969c4e5c521f
 
         div(class='col-9')
-          .mapbox
+          .mapbox_driver
             #map
               
             script.
@@ -50,6 +64,7 @@ block content
                   {
                     zoom: 15,
                     center: { lat: 44.69254300000001, lng: -73.46696199999997 },
+<<<<<<< HEAD
 
                     styles: [
                       {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -131,6 +146,9 @@ block content
                         stylers: [{color: '#17263c'}]
                       }
                     ]
+=======
+                    disableDefaultUI: true
+>>>>>>> bcca3b72fc580ad87e6f2fd68a6c969c4e5c521f
                   }
                 );
 
