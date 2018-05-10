@@ -83,6 +83,7 @@ block content
       #map
         
       script.
+
         var x = !{JSON.stringify(recyclables)}
         
         function initMap() {
@@ -107,30 +108,45 @@ block content
           }
           console.log(markers);
 
-          // Loop through markers
           for (var i = 0; i < x.length; i++) {
-            addMarker( markers[i] ); 
+            if (x[i].processed == false) 
+              addNotProcessedMarker( markers[i] ); 
+            else
+              addProcessedMarker( markers[i] ); 
           }
 
-          function addMarker(props) {
+          function addNotProcessedMarker(props) {
             var marker = new google.maps.Marker({
               position: props.coords,
               animation: google.maps.Animation.DROP,
               map: map,
               icon: '../css/img/clientIcon.png'
             });
-
-            // Check content
             if (props.content) {
               var infoWindow = new google.maps.InfoWindow({content: props.content}); 
               marker.addListener('click', function() {
                 infoWindow.open(map, marker);
               });
             }
+          }
+
+          function addProcessedMarker(props) {
+            var marker = new google.maps.Marker({
+              position: props.coords,
+              animation: google.maps.Animation.DROP,
+              map: map,
+              icon: '../css/img/processed.png'
+            });
+            if (props.content) {
+              var infoWindow = new google.maps.InfoWindow({content: props.content}); 
+              marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+              });
+            }
+          }
 
           }
 
-        }
 
 
         // >>> function for make markers bounce
