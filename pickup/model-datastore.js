@@ -7,8 +7,8 @@ const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');
 const request = require('request');
 const path = require('path');
-const ds = Datastore({ 
-  projectId: config.get('GCLOUD_PROJECT'),
+const ds = Datastore({
+  projectId: config.get('cleangreen-198621'),
   keyFilename: path.join(__dirname, '../config/keyFile.json')
 });
 const kind = "Recyclables";
@@ -57,7 +57,7 @@ function create(data, email) {
   };
   var inputAddress = generateAddress(rawAddress);
   const encodedAddress = encodeURIComponent(inputAddress);
-  
+
 
   // For getting latitude and longitude
   var requestCounter = 0;

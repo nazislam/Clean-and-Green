@@ -1,5 +1,5 @@
 {
-  "GCLOUD_PROJECT": "clean-and-green",
+  "GCLOUD_PROJECT": "cleangreen-198621",
   "DATA_BACKEND": "datastore",
   "PORT": 5000
 }
