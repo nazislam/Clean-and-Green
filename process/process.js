@@ -28,6 +28,7 @@ processRouter.route('/')
   // })
   .post((req, res) => {
     const data = req.body;
+    console.log(data);
     const address = data.address;
     getModel().processRequest(req.user.email, address);
     setTimeout(function() {
