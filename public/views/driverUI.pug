@@ -3,7 +3,7 @@ extends layout
 block content
 
     .navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-full
-      a.navbar-brand(href='/home')
+      a.navbar-brand(href='/register/driverUI')
         img(src='/css/img/recyclelogo.png', width='35', height='35', alt='GnC')
       span.user_type Driver #{user.firstName}
 
@@ -152,7 +152,10 @@ block content
                       position: props.coords,
                       animation: google.maps.Animation.DROP,
                       map: map,
-                      icon: '../css/img/recycling-148349_960_720.png'
+                      icon: {
+                        url: '../css/img/markerDriver.svg',
+                        scaledSize: new google.maps.Size(55, 55)
+                      }
                     });
                     if (props.content) {
                       var infoWindow = new google.maps.InfoWindow({content: props.content}); 
@@ -167,7 +170,10 @@ block content
                       position: props.coords,
                       animation: google.maps.Animation.DROP,
                       map: map,
-                      icon: '../css/img/processed.png'
+                      icon: {
+                        url: '../css/img/markerChecked.svg',
+                        scaledSize: new google.maps.Size(55, 55)
+                      }
                     });
                     if (props.content) {
                       var infoWindow = new google.maps.InfoWindow({content: props.content}); 
