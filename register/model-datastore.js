@@ -8,7 +8,7 @@ const Datastore = require('@google-cloud/datastore');
 const config = require('../config/config');
 const path = require('path');
 const ds = Datastore({
-  projectId: config.get('clean-and-green')
+  projectId: config.get('GCLOUD_PROJECT')
 });
 
 const kindClient = "Client";

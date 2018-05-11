@@ -220,11 +220,12 @@ block content
           for (var i = 0; i < x.length; i++) {
             if (x[i].processed == false) 
               addNotProcessedMarker( markers[i] ); 
-            else
+            else {
               var h = new Date();
               var localTime = h.getTime();
               if ((localTime - x[i].processedTime) < 5 * 60 * 1000)
                 addProcessedMarker( markers[i] ); 
+            }
           }
 
           function addNotProcessedMarker(props) {
