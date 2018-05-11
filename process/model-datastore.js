@@ -9,7 +9,7 @@ const config = require('../config/config');
 const request = require('request');
 const path = require('path');
 const ds = Datastore({
-  projectId: 'clean-and-green'
+  projectId: config.get('GCLOUD_PROJECT')
 });
 const kindRecyclables = "Recyclables";
 const kindProcessed = "Processed";
@@ -49,6 +49,8 @@ function processRequest(email, address) {
     entries.forEach(entry => {
       const entryKey = entry[ds.KEY];
       entry.processed = true;
+      var d = new Date();
+      entry.processedTime = d.getTime();
       const entity = {
         key: entryKey,
         data: entry

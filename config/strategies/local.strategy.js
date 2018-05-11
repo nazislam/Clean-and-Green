@@ -15,7 +15,7 @@ function getModel() {
   return require('../../datastore/model-datastore');
 }
 
-var l1 = function() {
+var verifyClient = function() {
 passport.use('local', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
@@ -37,7 +37,7 @@ function(email, password, done) {
 }));
 };
 
-var l2 = function() {
+var verifyDriver = function() {
 passport.use('local2', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
@@ -59,4 +59,4 @@ function(email, password, done) {
 }));
 };
 
-module.exports = { l1, l2 };
+module.exports = { verifyClient, verifyDriver };

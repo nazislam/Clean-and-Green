@@ -19,8 +19,6 @@ module.exports = function(app) {
     done(null, user);
   });
 
-  st.l1();
-  st.l2();
-
-  // require('./strategies/local.strategy')();
+  st.verifyClient();
+  st.verifyDriver();
 };

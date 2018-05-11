@@ -33,6 +33,8 @@ pickupRouter.route('/')
       data.item = getModel().processItemAsArray(data.item);
     }
     data.processed = false;
+    var d = new Date();
+    data.orderTime = d.getTime();
     getModel().create(data, userEmail);
     setTimeout(function() {
       res.redirect('/register/clientUI');
