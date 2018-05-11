@@ -144,7 +144,10 @@ block content
                     if (x[i].processed == false) 
                       addNotProcessedMarker( markers[i] ); 
                     else
-                      addProcessedMarker( markers[i] ); 
+                      var h = new Date();
+                      var localTime = h.getTime();
+                      if ((localTime - x[i].processedTime) < 5 * 60 * 1000)
+                        addProcessedMarker(markers[i]); 
                   }
 
                   function addNotProcessedMarker(props) {
