@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 /* jshint node: true */
 
-//GCLOUD_PROJECT
 'use strict';
 
 const Datastore = require('@google-cloud/datastore');
@@ -63,20 +62,32 @@ function listRecyclables(cb) {
   });
 }
 
-function createClient(data) {
-    const entity = {
-        key: ds.key(kindClient),
-        data: toDatastore(data)
-    };
-    ds.save(entity);
+function createClient(email, data) {
+  const q1 = ds.createQuery(kindClient).filter('email', '=', email);
+  ds.runQuery(q1).then(r => {
+    const clients = r[0];
+    if (clients.length === 0) {
+      const entity = {
+          key: ds.key(kindClient),
+          data: toDatastore(data)
+      };
+      ds.save(entity);
+    }
+  });
 }
 
-function createDriver(data) {
-    const entity = {
-        key: ds.key(kindDriver),
-        data: toDatastore(data)
-    };
-    ds.save(entity);
+function createDriver(email, data) {
+  const q1 = ds.createQuery(kindDriver).filter('email', '=', email);
+  ds.runQuery(q1).then(r => {
+    const drivers = r[0];
+    if (drivers.length === 0) {
+      const entity = {
+          key: ds.key(kindDriver),
+          data: toDatastore(data)
+      };
+      ds.save(entity);
+    }
+  });
 }
 
 

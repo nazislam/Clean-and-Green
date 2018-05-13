@@ -37,14 +37,12 @@ registerRouter.route('/')
     req.login(req.body, () => {
       const data = req.body;
       if (data.userType === 'client') {
-        // data.sentRequests = [];
-        getModel().createClient(data);
+        getModel().createClient(data.email, data);
         req.flash('success', "You've successfully registered. Please login to send a pickup request.");
         res.redirect('/');
       }
       else {
-        // data.listOfpickups = [];
-        getModel().createDriver(data);
+        getModel().createDriver(data.email, data);
         req.flash('success', "You've successfully registered. Please login to pickup recyclables.");
         res.redirect('/');
       }
