@@ -25,11 +25,15 @@ block content
           else
             each v in recyclables
               if v.processed === false
-                form(method='POST', action='/process')
-                  span= v.street
-                  br
-                  input(style='display:none', name='address', value=v.street)
-                  button.btn.btn-sm.btn-success(type='submit') Process
+                ul.list-group.list-group-flush
+                  li.list-group-item(style="background-color:#464e57")
+                    form(method='POST', action='/process')
+                      span(style="font-weight: bold;")= v.creatorName
+                      br
+                      small= v.street
+                      br
+                      input(style='display:none', name='address', value=v.street)
+                      button.btn.btn-sm.btn-success(type='submit', style="float:right;") Process
                 
 
         div(class='col-9')
@@ -136,7 +140,7 @@ block content
                     loc.coords = {};
                     loc.coords.lat = x[i].latitude;
                     loc.coords.lng = x[i].longitude;
-                    loc.content = '<strong>'+ x[i].street + '</strong><br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
+                    loc.content = '<strong>'+ x[i].creatorName + '</strong><br/>' + x[i].street + '<br/><small>' + x[i].city + ', ' + x[i].state + '</small>';
                     markers.push(loc);
                   }
 
@@ -146,7 +150,7 @@ block content
                     else {
                       var h = new Date();
                       var localTime = h.getTime();
-                      if ((localTime - x[i].processedTime) < 5 * 60 * 1000)
+                      if ((localTime - x[i].processedTime) < 3 * 60 * 1000)
                         addProcessedMarker(markers[i]); 
                     }
                   }
@@ -159,7 +163,7 @@ block content
                       icon: {
                         // url: '../css/img/markerDriver.svg',
                         url: '../css/img/markerDriver.png',
-                        scaledSize: new google.maps.Size(40, 61)
+                        scaledSize: new google.maps.Size(40, 64)
                       }
                     });
                     if (props.content) {
@@ -178,7 +182,7 @@ block content
                       icon: {
                         // url: '../css/img/markerChecked.svg',
                         url: '../css/img/markerChecked.png',
-                        scaledSize: new google.maps.Size(40, 61)
+                        scaledSize: new google.maps.Size(40, 64)
                       }
                     });
                     if (props.content) {

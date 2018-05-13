@@ -223,7 +223,7 @@ block content
             else {
               var h = new Date();
               var localTime = h.getTime();
-              if ((localTime - x[i].processedTime) < 5 * 60 * 1000)
+              if ((localTime - x[i].processedTime) < 3 * 60 * 1000)
                 addProcessedMarker( markers[i] ); 
             }
           }
@@ -236,7 +236,7 @@ block content
               icon: {
                 //url: '../css/img/clientMarkerNotProcessed.svg',
                 url: '../css/img/clientMarkerNotProcessed.png',
-                scaledSize: new google.maps.Size(40, 61)
+                scaledSize: new google.maps.Size(40, 64)
               }
             });
             if (props.content) {
@@ -255,7 +255,7 @@ block content
               icon: {
                 // url: '../css/img/clientMarkerProcessed.svg',
                 url: '../css/img/clientMarkerProcessed.png',
-                scaledSize: new google.maps.Size(40, 61)
+                scaledSize: new google.maps.Size(40, 64)
               }
             });
             if (props.content) {
