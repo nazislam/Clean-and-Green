@@ -8,7 +8,8 @@ const config = require('../config/config');
 const request = require('request');
 const path = require('path');
 const ds = Datastore({
-  projectId: config.get('GCLOUD_PROJECT')
+  projectId: config.get('GCLOUD_PROJECT'),
+  keyFile: path.join(__dirname, '../config/keyFile.json')
 });
 const kind = "Recyclables";
 
