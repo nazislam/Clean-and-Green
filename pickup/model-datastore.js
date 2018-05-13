@@ -8,8 +8,7 @@ const config = require('../config/config');
 const request = require('request');
 const path = require('path');
 const ds = Datastore({
-  projectId: config.get('GCLOUD_PROJECT'),
-  keyFile: path.join(__dirname, '../config/keyFile.json')
+  projectId: config.get('GCLOUD_PROJECT')
 });
 const kind = "Recyclables";
 
@@ -89,6 +88,7 @@ function create(data, email) {
                   clients.forEach(client => {
                     const clientKey = client[ds.KEY];
                     data.creatorId = clientKey.id;
+                    data.creatorName = client.firstName + " " + client.lastName;
                     const entity = {
                       key: newKey,
                       data: toDatastore(data)
