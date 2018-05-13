@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 /* jshint node: true */
 
-//GCLOUD_PROJECT
 'use strict';
 
 const Datastore = require('@google-cloud/datastore');
@@ -64,19 +63,19 @@ function listRecyclables(cb) {
 }
 
 function createClient(data) {
-    const entity = {
-        key: ds.key(kindClient),
-        data: toDatastore(data)
-    };
-    ds.save(entity);
+  const entity = {
+      key: ds.key(kindClient),
+      data: toDatastore(data)
+  };
+  ds.save(entity);
 }
 
 function createDriver(data) {
-    const entity = {
-        key: ds.key(kindDriver),
-        data: toDatastore(data)
-    };
-    ds.save(entity);
+  const entity = {
+      key: ds.key(kindDriver),
+      data: toDatastore(data)
+  };
+  ds.save(entity);
 }
 
 
