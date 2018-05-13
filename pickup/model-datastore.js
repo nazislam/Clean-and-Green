@@ -89,6 +89,7 @@ function create(data, email) {
                   clients.forEach(client => {
                     const clientKey = client[ds.KEY];
                     data.creatorId = clientKey.id;
+                    data.creatorName = client.firstName + " " + client.lastName;
                     const entity = {
                       key: newKey,
                       data: toDatastore(data)
