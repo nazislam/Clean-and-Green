@@ -23,9 +23,6 @@ processRouter.route('/')
     }
     next();
   })
-  // .get((req, res) => {
-  //   res.send('in process router');
-  // })
   .post((req, res) => {
     const data = req.body;
     const address = data.address;
