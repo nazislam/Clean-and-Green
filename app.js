@@ -41,7 +41,15 @@ app.use('/pickup', pickupRouter);
 app.use('/process', processRouter);
 
 router.get('/', (req, res) => {
+  if (req.user !== undefined) {
+    if (req.user.userType === 'client') {
+      res.redirect('register/clientUI');
+    } else if (req.user.userType === 'driver') {
+      res.redirect('register/driverUI');
+    }
+  } else {
     res.render('home');
+  }
 });
 
 router.get('/home', (req, res) => {
@@ -50,11 +58,11 @@ router.get('/home', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-    res.render('register');
+  res.render('register');
 });
 
 router.get('/signin', (req, res) => {
-    res.render('signIn');
+  res.render('signIn');
 });
 
 app.get('/logout', (req, res) => {
@@ -67,5 +75,5 @@ app.get('*', function(req, res) {
 });
 
 app.listen(port, (req, res) => {
-    console.log('server is running ON PORT:' + port);
+  console.log('server is running ON PORT:' + port);
 });
