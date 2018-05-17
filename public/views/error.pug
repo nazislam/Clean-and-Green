@@ -1,3 +1,4 @@
+
 doctype html
 html
   head
@@ -16,6 +17,11 @@ html
 
   body(style='font-family:arial')
     div(style='text-align:center; text-height: auto; padding-top: 20%')
-      h1 Sorry!
-      h3 The page you're looking for can't be found.
-      a.btn.btn-dark(href='/') Go back to homepage
+      h1(style='color:green') Sorry!
+      h3(style='color:green') The page you're looking for can't be found.
+      if (req === undefined)
+        a.btn.btn-success(href='/') Go back to homepage
+      else if (req.user.userType === 'client')
+        a.btn.btn-success(href='/register/clientUI') Go back to homepage
+      else if (req.user.userType === 'driver')
+        a.btn.btn-success(href='/register/driverUI') Go back to homepage
